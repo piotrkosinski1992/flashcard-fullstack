@@ -2,17 +2,17 @@ package io.kosinski.flashcards.usecase.impl;
 
 import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.gateway.FlashCardRepo;
-import io.kosinski.flashcards.usecase.IStoreFlashCard;
+import io.kosinski.flashcards.usecase.Store;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
 @Service
-class StoreFlashCard implements IStoreFlashCard {
+class StoreFlashCards implements Store {
 
     private final FlashCardRepo flashCardRepo;
 
-    public StoreFlashCard(FlashCardRepo flashCardRepo) {
+    public StoreFlashCards(FlashCardRepo flashCardRepo) {
         this.flashCardRepo = flashCardRepo;
     }
 

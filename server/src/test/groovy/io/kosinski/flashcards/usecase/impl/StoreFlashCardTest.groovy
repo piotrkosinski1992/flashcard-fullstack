@@ -8,11 +8,11 @@ import spock.lang.Specification
 class StoreFlashCardTest extends Specification {
 
     FlashCardRepo flashCardRepoMock
-    StoreFlashCard storeFlashCard
+    StoreFlashCards storeFlashCard
 
     def setup() {
         flashCardRepoMock = Mock(FlashCardRepo.class)
-        storeFlashCard = new StoreFlashCard(flashCardRepoMock)
+        storeFlashCard = new StoreFlashCards(flashCardRepoMock)
     }
 
     def 'should store one flashcard'() {

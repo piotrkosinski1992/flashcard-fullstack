@@ -4,7 +4,7 @@ import io.kosinski.flashcards.domain.FlashCard;
 
 import java.util.Collection;
 
-public interface IStoreFlashCard {
+public interface Store {
 
     void storeOne(FlashCard flashCard);
 

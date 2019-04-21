@@ -1,7 +1,7 @@
 package io.kosinski.flashcards.entrypoint;
 
 import io.kosinski.flashcards.entrypoint.dto.FlashCardDTO;
-import io.kosinski.flashcards.usecase.IFindFlashCard;
+import io.kosinski.flashcards.usecase.Find;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/flashcard")
 public class FindFlashCardController {
 
-    private final IFindFlashCard findFlashCard;
+    private final Find findFlashCard;
     private final ModelMapper mapper = new ModelMapper();
 
-    public FindFlashCardController(IFindFlashCard findFlashCard) {
+    public FindFlashCardController(Find findFlashCard) {
         this.findFlashCard = findFlashCard;
     }
 

@@ -1,4 +1,4 @@
 package io.kosinski.flashcards.usecase;
 
-public interface IModifyFlashCard {
+public interface Modify {
 }

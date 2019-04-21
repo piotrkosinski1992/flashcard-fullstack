@@ -2,7 +2,7 @@ package io.kosinski.flashcards.entrypoint;
 
 import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardDTO;
-import io.kosinski.flashcards.usecase.IStoreFlashCard;
+import io.kosinski.flashcards.usecase.Store;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/flashcard")
 public class StoreFlashCardController {
 
-    private final IStoreFlashCard storeFlashCard;
+    private final Store storeFlashCard;
 
     private final ModelMapper mapper = new ModelMapper();
 
-    public StoreFlashCardController(IStoreFlashCard storeFlashCard) {
+    public StoreFlashCardController(Store storeFlashCard) {
         this.storeFlashCard = storeFlashCard;
     }
 
