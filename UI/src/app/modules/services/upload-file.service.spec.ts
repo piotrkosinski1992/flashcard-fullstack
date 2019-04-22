@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UploadFileService } from './upload-file.service';
+import { UploadFlashCardsService } from './upload-flash-cards.service';
 
-describe('UploadFileService', () => {
+describe('UploadFlashCardsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: UploadFileService = TestBed.get(UploadFileService);
+    const service: UploadFlashCardsService = TestBed.get(UploadFlashCardsService);
     expect(service).toBeTruthy();
   });
 });

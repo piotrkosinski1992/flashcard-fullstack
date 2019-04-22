@@ -1,13 +1,12 @@
 package io.kosinski.flashcards.entrypoint;
 
+import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.usecase.impl.UploadFlashCards;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collection;
 
 @RestController
 @CrossOrigin(allowedHeaders = "*", value = "http://localhost:4200")
@@ -19,11 +18,17 @@ public class UploadFlashCardController
         this.uploadFlashCards = uploadFlashCards;
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/upload/file")
     public void uploadFromFile(@RequestParam("file") MultipartFile file) throws IOException
     {
         String flashcards = new String(file.getBytes(), "UTF-8");
         uploadFlashCards.uploadFromString(flashcards,";");
+    }
+
+    @PostMapping("/upload/array")
+    public void uploadFromArray(@RequestBody Collection<FlashCard> flashcards)
+    {
+        uploadFlashCards.uploadFromArray(flashcards);
     }
 }
 

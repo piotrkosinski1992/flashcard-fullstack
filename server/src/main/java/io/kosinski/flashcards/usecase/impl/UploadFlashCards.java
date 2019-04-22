@@ -7,6 +7,7 @@ import io.kosinski.flashcards.usecase.Upload;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,11 @@ public class UploadFlashCards implements Upload {
         flashCardRepo.saveAll(flashCardsList);
     }
 
+    @Override
+    public void uploadFromArray(Collection<FlashCard> flashcards) {
+        flashCardRepo.saveAll(flashcards);
+    }
+
     private String[] splitDataBySeparator(String flashCards, String separator) {
         return flashCards.split(";");
     }
@@ -33,7 +39,7 @@ public class UploadFlashCards implements Upload {
     private List<FlashCard> mapArrayToListOfObjects(String[] flashCards) {
         return Arrays.asList(flashCards)
                 .stream()
-                .map(flashCardString -> mapStringToObject(flashCardString))
+                .map(this::mapStringToObject)
                 .collect(Collectors.toList());
     }
 
@@ -42,7 +48,7 @@ public class UploadFlashCards implements Upload {
 
         validateFlashCardData(flashCard);
 
-        return FlashCard.of(flashCard[0], flashCard[1]);
+        return FlashCard.of(flashCard[0].trim(), flashCard[1].trim());
     }
 
     private void validateFlashCardData(String[] flashCard) {
