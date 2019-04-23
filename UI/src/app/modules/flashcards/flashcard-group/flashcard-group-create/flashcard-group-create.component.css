@@ -1,0 +1,21 @@
+input {
+  margin-bottom: 5px;
+}
+
+.col-xs-12 {
+  margin-left: 10px;
+}
+
+label { margin-left: 25px; font-size: 200%}
+
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+input.ng-invalid {
+  border: 1px solid red;
+}

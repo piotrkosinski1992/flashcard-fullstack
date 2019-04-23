@@ -1,0 +1,33 @@
+<div>
+  <div class="col-md-12">
+    <form [formGroup]="flashCardsForm" (ngSubmit)="onSave()">
+      <div class="row">
+        <div class="col-xs-12">
+          <label class="label">Flashcard group name:
+            <input required formControlName="groupName" type="text" id="groupName" class="form-control"></label>
+        </div>
+      </div>
+      <div class="col-xs-12" formArrayName="flashcards">
+        <div class="row"
+             *ngFor="let flashCardsCtrl of getControls(); let i= index"
+             [formGroupName]="i"
+             style="margin-top: 10px;">
+          <div class="col-xs-12">
+            <input required formControlName="heads" type="text" id="heads" class="form-control">
+          </div>
+          <div class="col-xs-12">
+            <input required formControlName="tails" type="text" id="tails" class="form-control">
+          </div>
+          <button id="delete" class="btn-danger" (click)="onDeleteFlashcard(i)">X</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn-default" (click)="onAddFlashcard()">Add flashcard</button>
+          <button type="submit" class="btn-success" [disabled]="!flashCardsForm.valid">Save All</button>
+          <button type="button" class="btn-danger">Cancel All</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
