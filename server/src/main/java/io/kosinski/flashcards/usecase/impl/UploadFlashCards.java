@@ -15,24 +15,31 @@ import java.util.stream.Collectors;
 public class UploadFlashCards implements Upload {
 
     private final FlashCardRepo flashCardRepo;
+    private String groupName;
 
     public UploadFlashCards(FlashCardRepo flashCardRepo) {
         this.flashCardRepo = flashCardRepo;
     }
 
     @Override
-    public void uploadFromString(String data, String separator) {
-        String[] flashCardsArray = splitDataBySeparator(data, separator);
+    public void uploadFromString(String data, String fileName) {
+        this.groupName = prepareGroupName(fileName);
+        String[] flashCardsArray = splitDataBySeparator(data);
         List<FlashCard> flashCardsList = mapArrayToListOfObjects(flashCardsArray);
         flashCardRepo.saveAll(flashCardsList);
     }
 
+    private String prepareGroupName(String fileName) {
+        return fileName.substring(0, fileName.indexOf("."));
+    }
+
     @Override
-    public void uploadFromArray(Collection<FlashCard> flashcards) {
+    public void uploadFromArray(Collection<FlashCard> flashcards, String groupName) {
+        flashcards.forEach(flashcard -> flashcard.setGroupName(groupName));
         flashCardRepo.saveAll(flashcards);
     }
 
-    private String[] splitDataBySeparator(String flashCards, String separator) {
+    private String[] splitDataBySeparator(String flashCards) {
         return flashCards.split(";");
     }
 
@@ -48,7 +55,7 @@ public class UploadFlashCards implements Upload {
 
         validateFlashCardData(flashCard);
 
-        return FlashCard.of(flashCard[0].trim(), flashCard[1].trim());
+        return FlashCard.of(flashCard[0].trim(), flashCard[1].trim(), groupName);
     }
 
     private void validateFlashCardData(String[] flashCard) {

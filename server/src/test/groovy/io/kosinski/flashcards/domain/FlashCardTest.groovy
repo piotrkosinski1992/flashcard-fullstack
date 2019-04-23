@@ -7,11 +7,12 @@ class FlashCardTest extends Specification {
 
     def 'should create flashcard correctly'() {
         when:
-        FlashCard card = FlashCard.of('heads', 'tails')
+        FlashCard card = FlashCard.of('heads', 'tails','groupName')
 
         then:
         card.heads == 'heads'
         card.tails == 'tails'
+        card.groupName == 'groupName'
     }
 
     def 'should compare two flashcards correctly'() {

@@ -5,7 +5,7 @@ import io.kosinski.flashcards.domain.FlashCard;
 import java.util.Collection;
 
 public interface Upload {
-    void uploadFromString(String data, String separator);
+    void uploadFromString(String data, String fileName);
 
-    void uploadFromArray(Collection<FlashCard> flashcards);
+    void uploadFromArray(Collection<FlashCard> flashcards, String groupName);
 }

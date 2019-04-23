@@ -22,13 +22,13 @@ public class UploadFlashCardController
     public void uploadFromFile(@RequestParam("file") MultipartFile file) throws IOException
     {
         String flashcards = new String(file.getBytes(), "UTF-8");
-        uploadFlashCards.uploadFromString(flashcards,";");
+        uploadFlashCards.uploadFromString(flashcards, file.getOriginalFilename());
     }
 
-    @PostMapping("/upload/array")
-    public void uploadFromArray(@RequestBody Collection<FlashCard> flashcards)
+    @PostMapping("/upload/array/{groupName}")
+    public void uploadFromArray(@RequestBody Collection<FlashCard> flashcards, @PathVariable String groupName)
     {
-        uploadFlashCards.uploadFromArray(flashcards);
+        uploadFlashCards.uploadFromArray(flashcards, groupName);
     }
 }
 

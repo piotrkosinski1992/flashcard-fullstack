@@ -13,8 +13,13 @@ public final class FlashCard {
     private Integer id;
     private String heads;
     private String tails;
+    private String groupName;
 
     private FlashCard() {
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public void setId(Integer id) {
@@ -33,8 +38,13 @@ public final class FlashCard {
         return tails;
     }
 
-    public static FlashCard of(String heads, String tails) {
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public static FlashCard of(String heads, String tails, String groupName) {
         FlashCard card = new FlashCard();
+        card.groupName = groupName;
         card.heads = heads;
         card.tails =  tails;
         return card;

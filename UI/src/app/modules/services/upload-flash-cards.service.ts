@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {FlashcardGroup} from "../flashcards/flashcard-group/flashcard-group.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,8 @@ export class UploadFlashCardsService {
     return this.http.post(this.BASE_URL + '/api/upload/file', fd)
   }
 
-  uploadArray(flashCards: []) {
-    return this.http.post(this.BASE_URL + '/api/upload/array', flashCards)
+  uploadFlashcardGroup(flashcardGroup: FlashcardGroup) {
+    return this.http.post(this.BASE_URL + '/api/upload/array/'
+      + flashcardGroup.flashcardGroupName, flashcardGroup.flashcards)
   }
-
-
 }

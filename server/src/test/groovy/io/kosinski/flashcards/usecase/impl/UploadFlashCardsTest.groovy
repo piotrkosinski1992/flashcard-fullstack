@@ -53,7 +53,7 @@ class UploadFlashCardsTest extends Specification {
         String flashCardString = "one,jeden;two,dwa;three,trzy"
 
         when:
-        String[] flashCards = uploadFlashCards.splitDataBySeparator(flashCardString, ";")
+        String[] flashCards = uploadFlashCards.splitDataBySeparator(flashCardString)
 
         then:
         flashCards.size() == 3
@@ -69,5 +69,19 @@ class UploadFlashCardsTest extends Specification {
         then:
         flashCardsList.size() == 3
 
+    }
+
+    def "should remove file extension from file name"() {
+        given:
+        def filename1 = "fiszki.txt"
+        def filename2 = "virus.exe"
+
+        when:
+        def result1 = uploadFlashCards.prepareGroupName(filename1)
+        def result2 = uploadFlashCards.prepareGroupName(filename2)
+
+        then:
+        result1 == "fiszki"
+        result2 == "virus"
     }
 }
