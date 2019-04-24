@@ -1,16 +1,14 @@
-import { Alert, AlertType } from './alert/model/alert.model';
-import { AppActionTypes, AppActions } from './app.actions';
+import {Alert} from './alert/model/alert.model';
+import {AppActions, AppActionTypes} from './app.actions';
 
 export const featureName = 'appProperties';
 
 export interface AppState {
-  alerts: Alert[],
-  message: string
+  alerts: Alert[]
 }
 
 const initialState: AppState = {
-  alerts: [new Alert(AlertType.Success,"HELLO")],
-  message: 'HELLO'
+  alerts: []
 };
 
 export function appReducer(state = initialState, action: AppActions) {
@@ -24,7 +22,7 @@ export function appReducer(state = initialState, action: AppActions) {
     case AppActionTypes.ADD_ALERTS: {
       return {
         ...state,
-        alerts: [...state.alerts, action.alerts]
+        alerts: [...state.alerts, action.alert]
       };
     }
     default:

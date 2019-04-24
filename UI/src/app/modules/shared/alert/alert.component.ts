@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Alert } from './model/alert.model';
-import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducers';
+import {Component, OnInit} from '@angular/core';
+import {Alert} from './model/alert.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../app.reducers';
 
 @Component({
   selector: 'app-alert',
@@ -10,12 +10,12 @@ import { AppState } from '../app.reducers';
 })
 export class AlertComponent implements OnInit {
 
-  private alerts: Alert[];
+  private alerts: Alert[] = [];
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.select('core').subscribe(store => {
+    this.store.select('core').subscribe((store: AppState) => {
       this.alerts = store.alerts
     })
   }

@@ -1,7 +1,8 @@
 package io.kosinski.flashcards.usecase.impl
 
 import io.kosinski.flashcards.domain.FlashCard
-import io.kosinski.flashcards.exception.InvalidFlashCard
+import io.kosinski.flashcards.exception.InvalidFileFormat
+import io.kosinski.flashcards.exception.InvalidFlashCardData
 import spock.lang.Specification
 
 class UploadFlashCardsTest extends Specification {
@@ -32,8 +33,7 @@ class UploadFlashCardsTest extends Specification {
         uploadFlashCards.mapStringToObject(flashCardString)
 
         then:
-        InvalidFlashCard ex = thrown()
-        ex.getMessage() == "flashcard should contain 2 parameters instead of 1"
+        thrown InvalidFlashCardData
     }
 
     def "should throw exception when flashCard contain empty fields"() {
@@ -44,7 +44,7 @@ class UploadFlashCardsTest extends Specification {
         uploadFlashCards.mapStringToObject(flashCardString)
 
         then:
-        InvalidFlashCard ex = thrown()
+        InvalidFlashCardData ex = thrown()
         ex.getMessage() == "FlashCard can't contain empty fields"
     }
 
@@ -74,7 +74,7 @@ class UploadFlashCardsTest extends Specification {
     def "should remove file extension from file name"() {
         given:
         def filename1 = "fiszki.txt"
-        def filename2 = "virus.exe"
+        def filename2 = "virus.doc"
 
         when:
         def result1 = uploadFlashCards.prepareGroupName(filename1)
@@ -83,5 +83,16 @@ class UploadFlashCardsTest extends Specification {
         then:
         result1 == "fiszki"
         result2 == "virus"
+    }
+
+    def "should throw exception when file format is invalid"() {
+        given:
+        def filename = "rachunki.xls"
+
+        when:
+        uploadFlashCards.prepareGroupName(filename)
+
+        then:
+        thrown InvalidFileFormat
     }
 }

@@ -6,10 +6,10 @@ export enum AppActionTypes {
   CLEAR_ALERTS = '[core] clear alerts',
 }
 
-export class AddAlerts implements Action {
+export class AddAlert implements Action {
   readonly type = AppActionTypes.ADD_ALERTS;
 
-  constructor(public alerts: Alert[]) {
+  constructor(public alert: Alert) {
   }
 }
 
@@ -18,4 +18,4 @@ export class ClearAlerts implements Action {
 }
 
 
-export type AppActions = AddAlerts | ClearAlerts;
+export type AppActions = AddAlert | ClearAlerts;

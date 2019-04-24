@@ -1,7 +1,8 @@
 package io.kosinski.flashcards.usecase.impl;
 
 import io.kosinski.flashcards.domain.FlashCard;
-import io.kosinski.flashcards.exception.InvalidFlashCard;
+import io.kosinski.flashcards.exception.InvalidFileFormat;
+import io.kosinski.flashcards.exception.InvalidFlashCardData;
 import io.kosinski.flashcards.gateway.FlashCardRepo;
 import io.kosinski.flashcards.usecase.Upload;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class UploadFlashCards implements Upload {
     }
 
     private String prepareGroupName(String fileName) {
+        String fileExtension = fileName.substring(fileName.indexOf(".") + 1);
+        if (!fileExtension.equals("txt") && !fileExtension.equals("doc") && !fileExtension.equals("docx")) {
+            throw new InvalidFileFormat(fileExtension);
+        }
+
         return fileName.substring(0, fileName.indexOf("."));
     }
 
@@ -60,11 +66,11 @@ public class UploadFlashCards implements Upload {
 
     private void validateFlashCardData(String[] flashCard) {
         if (flashCard.length != 2) {
-            throw new InvalidFlashCard(String.format("flashcard should contain 2 parameters instead of %s",
-                    flashCard.length));
+            throw new InvalidFlashCardData(String.format("error parsing flashcard data %s",
+                    Arrays.toString(flashCard)));
         }
         if (flashCard[0].trim().isEmpty() || flashCard[1].trim().isEmpty()) {
-            throw new InvalidFlashCard("FlashCard can't contain empty fields");
+            throw new InvalidFlashCardData("FlashCard can't contain empty fields");
         }
     }
 }
