@@ -17,7 +17,6 @@ class FindFlashCard implements Find {
         this.flashCardRepo = flashCardRepo;
     }
 
-    @Override
     public FlashCard byId(Integer id) {
         return flashCardRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFound(String.format("FlashCard with id %s doesn't exist", id)));

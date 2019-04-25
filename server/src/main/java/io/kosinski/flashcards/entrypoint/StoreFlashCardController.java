@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/flashcard")
+@RequestMapping(value = "/flashcards")
 public class StoreFlashCardController {
 
     private final Store storeFlashCard;
