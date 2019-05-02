@@ -11,6 +11,10 @@
 
     <artifactId>server</artifactId>
 
+    <properties>
+        <testSourceDirectory>${project.basedir}/src/test/groovy</testSourceDirectory>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.modelmapper</groupId>
