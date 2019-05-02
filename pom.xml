@@ -17,7 +17,6 @@
     <description>FlashCard App for Adrianna</description>
     <modules>
         <module>server</module>
-        <module>UI</module>
     </modules>
     <packaging>pom</packaging>
 
