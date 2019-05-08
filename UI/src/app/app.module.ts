@@ -10,7 +10,7 @@ import { AlertComponent } from './modules/shared/alert/alert.component';
 import { environment } from '../environments/environment.prod';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './modules/shared/app.reducers';
+import { appReducer } from './modules/store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { appReducer } from './modules/shared/app.reducers';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({core: appReducer}),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production
     })

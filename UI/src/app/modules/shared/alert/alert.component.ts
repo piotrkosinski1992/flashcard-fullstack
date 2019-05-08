@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Alert} from './model/alert.model';
 import {Store} from '@ngrx/store';
-import {AppState} from '../app.reducers';
+import {AppState} from '../../store/app.reducers';
 
 @Component({
   selector: 'app-alert',
@@ -15,8 +15,8 @@ export class AlertComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.select('core').subscribe((store: AppState) => {
-      this.alerts = store.alerts
+    this.store.select('alerts').subscribe(data => {
+      this.alerts = data.alerts
     })
   }
 
