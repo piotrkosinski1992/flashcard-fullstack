@@ -1,6 +1,7 @@
-<ul class="list-group" *ngFor="let flashcardGroup of flashcardGroups">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    {{flashcardGroup.name}}
-    <span class="badge badge-primary badge-pill">{{flashcardGroup.amount}}</span>
-  </li>
+<ul class="list-group">
+  <app-flashcard-group-item
+    *ngFor="let flashcardGroup of flashcardGroups"
+    [flashcardGroup] = flashcardGroup
+  ></app-flashcard-group-item>
 </ul>
+

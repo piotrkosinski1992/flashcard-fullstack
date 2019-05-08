@@ -23,6 +23,12 @@ public class ControllerExceptionHandler {
         return error(e, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(GroupNameAlreadyExists.class)
+    public ResponseEntity<ErrorWrapper> handleGroupNameAlreadyExists(final GroupNameAlreadyExists e) {
+        logger.error("GroupName already exists");
+        return error(e, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(InvalidFlashCardData.class)
     public ResponseEntity<ErrorWrapper> handleInvalidFlashCardDataException(final InvalidFlashCardData e) {
         logger.error("Invalid flashcard data");

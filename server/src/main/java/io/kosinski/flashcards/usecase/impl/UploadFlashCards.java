@@ -1,6 +1,7 @@
 package io.kosinski.flashcards.usecase.impl;
 
 import io.kosinski.flashcards.domain.FlashCard;
+import io.kosinski.flashcards.exception.GroupNameAlreadyExists;
 import io.kosinski.flashcards.exception.InvalidFileFormat;
 import io.kosinski.flashcards.exception.InvalidFlashCardData;
 import io.kosinski.flashcards.gateway.FlashCardRepo;
@@ -25,9 +26,17 @@ public class UploadFlashCards implements Upload {
     @Override
     public void uploadFromString(String data, String fileName) {
         this.groupName = prepareGroupName(fileName);
+        if (isGroupNameAlreadyExist(groupName)) {
+            throw new GroupNameAlreadyExists(String.format("GroupName %s already exists", groupName));
+        }
+
         String[] flashCardsArray = splitDataBySeparator(data);
         List<FlashCard> flashCardsList = mapArrayToListOfObjects(flashCardsArray);
         flashCardRepo.saveAll(flashCardsList);
+    }
+
+    private boolean isGroupNameAlreadyExist(String groupName) {
+        return flashCardRepo.existsByGroupName(groupName);
     }
 
     private String prepareGroupName(String fileName) {
@@ -35,12 +44,14 @@ public class UploadFlashCards implements Upload {
         if (!fileExtension.equals("txt") && !fileExtension.equals("doc") && !fileExtension.equals("docx")) {
             throw new InvalidFileFormat(fileExtension);
         }
-
         return fileName.substring(0, fileName.indexOf("."));
     }
 
     @Override
     public void uploadFromArray(Collection<FlashCard> flashcards, String groupName) {
+        if (isGroupNameAlreadyExist(groupName)) {
+            throw new GroupNameAlreadyExists(String.format("GroupName %s already exists", groupName));
+        }
         flashcards.forEach(flashcard -> flashcard.setGroupName(groupName));
         flashCardRepo.saveAll(flashcards);
     }
@@ -50,8 +61,7 @@ public class UploadFlashCards implements Upload {
     }
 
     private List<FlashCard> mapArrayToListOfObjects(String[] flashCards) {
-        return Arrays.asList(flashCards)
-                .stream()
+        return Arrays.stream(flashCards)
                 .map(this::mapStringToObject)
                 .collect(Collectors.toList());
     }

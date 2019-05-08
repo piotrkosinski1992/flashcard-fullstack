@@ -1,8 +1,10 @@
 package io.kosinski.flashcards.entrypoint;
 
+import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
 import io.kosinski.flashcards.usecase.impl.FindFlashcardGroups;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +22,11 @@ public class FindFlashCardGroupsController {
 
     @GetMapping("/all")
     public Collection<FlashCardGroupDTO> findFlashcardGroups() {
-        return findFlashCardGroups.findAll();
+        return findFlashCardGroups.all();
+    }
+
+    @GetMapping("/{groupName}")
+    public Collection<FlashCard> findByGroupName(@PathVariable String groupName) {
+        return findFlashCardGroups.byGroupName(groupName);
     }
 }

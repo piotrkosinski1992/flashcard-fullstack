@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { FlashcardGroupState } from './store/flashcard-group.reducers';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {FlashcardGroupState} from './store/flashcard-group.reducers';
 import * as flashcardGroupsActions from '../flashcard-group/store/flashcard-group.actions'
 
 @Component({
@@ -16,11 +16,9 @@ export class FlashcardGroupComponent implements OnInit {
   }
 
   ngOnInit() {
-/*    this.flashcardGroupService.getFlashCardGroups().subscribe(
-      (response: FlashcardGroup[]) => this.flashcardGroups = response
-    )*/
-    this.store.dispatch(new flashcardGroupsActions.LoadFlashcardGroups())
-
+    this.store.dispatch(new flashcardGroupsActions.LoadFlashcardGroups());
+    this.store.select('flashcardGroups').subscribe(groups => {
+      this.flashcardGroups = groups['flashcardGroups']
+    })
   }
-
 }

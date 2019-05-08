@@ -3,6 +3,8 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UploadFlashCardsService} from "../../../services/upload-flash-cards.service";
 import {FlashcardGroup} from "../flashcard-group.model";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
+import {AlertService} from "../../../shared/alert/alert.service";
 
 @Component({
   selector: 'app-flashcard-group-create',
@@ -14,7 +16,7 @@ export class FlashcardGroupCreateComponent implements OnInit {
   flashCardsForm: FormGroup;
   flashCards: FormArray;
 
-  constructor(private uploadFlashCardsService: UploadFlashCardsService, private router: Router) {
+  constructor(private uploadFlashCardsService: UploadFlashCardsService, private router: Router, private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -22,9 +24,9 @@ export class FlashcardGroupCreateComponent implements OnInit {
   }
 
   private initForm() {
-    this.flashCards = new FormArray([])
-    this.flashCards.push(new FormGroup({heads: new FormControl('heads!'), tails: new FormControl('tails!')}))
-    this.flashCards.push(new FormGroup({heads: new FormControl('heads2!'), tails: new FormControl('tails2!')}))
+    this.flashCards = new FormArray([]);
+    this.flashCards.push(new FormGroup({heads: new FormControl('heads!'), tails: new FormControl('tails!')}));
+    this.flashCards.push(new FormGroup({heads: new FormControl('heads2!'), tails: new FormControl('tails2!')}));
 
     this.flashCardsForm = new FormGroup({
       'groupName': new FormControl(),
@@ -34,8 +36,15 @@ export class FlashcardGroupCreateComponent implements OnInit {
 
   onSave() {
     this.uploadFlashCardsService.uploadFlashcardGroup(new FlashcardGroup(this.flashCardsForm.value['groupName'], this.flashCardsForm.value['flashcards']))
-      .subscribe();
-      this.router.navigate(['flashcards/all'])
+      .subscribe(() => {
+          this.alertService.successAlert("Upload Succeed!");
+          setTimeout(() => {
+            this.router.navigate(['flashcards/all'])
+          }, 1000);
+        },
+        (err: HttpErrorResponse) => {
+          this.alertService.errorAlert("Upload Failed, call Kosinski!! " + err.error.message);
+        });
   }
 
   getControls() {

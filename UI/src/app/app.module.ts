@@ -11,6 +11,8 @@ import { environment } from '../environments/environment.prod';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './modules/store/app.reducers';
+import {EffectsModule} from "@ngrx/effects";
+import {FlashcardGroupEffects} from "./modules/flashcards/flashcard-group/store/flashcard-group.effects";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { appReducer } from './modules/store/app.reducers';
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production
-    })
+    }),
+    EffectsModule.forRoot([FlashcardGroupEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

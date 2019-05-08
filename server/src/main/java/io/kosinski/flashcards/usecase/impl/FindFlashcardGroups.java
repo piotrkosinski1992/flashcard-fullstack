@@ -1,5 +1,6 @@
 package io.kosinski.flashcards.usecase.impl;
 
+import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
 import io.kosinski.flashcards.gateway.FlashCardRepo;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class FindFlashcardGroups {
         this.flashCardRepo = flashCardRepo;
     }
 
-    public Collection<FlashCardGroupDTO> findAll() {
+    public Collection<FlashCardGroupDTO> all() {
         return flashCardRepo.findDistinctGroupNames()
                 .stream()
                 .map(groupName -> FlashCardGroupDTO.create(groupName, getCountByGroupName(groupName)))
@@ -25,5 +26,9 @@ public class FindFlashcardGroups {
 
     private int getCountByGroupName(String groupName) {
         return flashCardRepo.countByGroupName(groupName);
+    }
+
+    public Collection<FlashCard> byGroupName(String groupName) {
+        return flashCardRepo.findByGroupName(groupName);
     }
 }
