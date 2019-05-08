@@ -1,3 +1,4 @@
+**Travis build status:**
 [![Build Status](https://travis-ci.org/piotrkosinski1992/flashcard-fullstack.svg?branch=master)](https://travis-ci.org/piotrkosinski1992/flashcard-fullstack)
 
 **Trello:**
