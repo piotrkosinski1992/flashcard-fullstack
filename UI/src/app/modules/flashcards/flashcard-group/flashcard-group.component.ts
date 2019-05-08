@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FlashcardGroupService} from "./flashcard-group.service";
+import {FlashcardGroup} from "./flashcard-group.model";
 
 @Component({
   selector: 'app-flashcard-group',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlashcardGroupComponent implements OnInit {
 
-  constructor() { }
+  flashcardGroups = [];
+
+  constructor(private flashcardGroupService: FlashcardGroupService) {
+  }
 
   ngOnInit() {
+    this.flashcardGroupService.getFlashCardGroups().subscribe(
+      (response: FlashcardGroup[]) => this.flashcardGroups = response
+    )
   }
 
 }

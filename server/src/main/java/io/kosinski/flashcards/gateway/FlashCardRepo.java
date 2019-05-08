@@ -10,4 +10,6 @@ public interface FlashCardRepo extends JpaRepository<FlashCard, Integer> {
 
     @Query("SELECT DISTINCT card.groupName FROM FlashCard card")
     List<String> findDistinctGroupNames();
+
+    int countByGroupName(String groupName);
 }
