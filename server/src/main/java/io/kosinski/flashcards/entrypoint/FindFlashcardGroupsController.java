@@ -12,11 +12,11 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping(value = "/flashcards/group")
-public class FindFlashCardGroupsController {
+public class FindFlashcardGroupsController {
 
     private final FindFlashcardGroups findFlashCardGroups;
 
-    public FindFlashCardGroupsController(FindFlashcardGroups findFlashCardGroups) {
+    public FindFlashcardGroupsController(FindFlashcardGroups findFlashCardGroups) {
         this.findFlashCardGroups = findFlashCardGroups;
     }
 

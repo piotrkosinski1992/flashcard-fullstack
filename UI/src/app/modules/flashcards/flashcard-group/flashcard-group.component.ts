@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {FlashcardGroupState} from './store/flashcard-group.reducers';
-import * as flashcardGroupsActions from '../flashcard-group/store/flashcard-group.actions'
+import {Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {AppState} from "../../store/app.reducers";
 
 @Component({
   selector: 'app-flashcard-group',
@@ -10,15 +12,17 @@ import * as flashcardGroupsActions from '../flashcard-group/store/flashcard-grou
 })
 export class FlashcardGroupComponent implements OnInit {
 
-  flashcardGroups = [];
+  flashcardGroupsState: Observable<FlashcardGroupState>;
 
-  constructor(private store: Store<FlashcardGroupState>) {
+  constructor(private store: Store<AppState>, private router: Router) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new flashcardGroupsActions.LoadFlashcardGroups());
-    this.store.select('flashcardGroups').subscribe(groups => {
-      this.flashcardGroups = groups['flashcardGroups']
-    })
+    this.flashcardGroupsState = this.store.select('flashcardGroups')
+
+  }
+
+  onBackClicked() {
+    this.router.navigate(['/'])
   }
 }

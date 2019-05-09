@@ -3,6 +3,9 @@ import {UploadFlashCardsService} from "../../services/upload-flash-cards.service
 import {Router} from "@angular/router";
 import {AlertService} from "../../shared/alert/alert.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import * as flashcardGroupsActions from "../flashcard-group/store/flashcard-group.actions";
+import {Store} from "@ngrx/store";
+import {FlashcardGroupState} from "../flashcard-group/store/flashcard-group.reducers";
 
 @Component({
   selector: 'app-flashcards-upload',
@@ -12,7 +15,10 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class FlashcardsUploadComponent implements OnInit, OnDestroy {
   selectedFile = null;
 
-  constructor(private uploadFileService: UploadFlashCardsService, private router: Router, private alertService: AlertService) {
+  constructor(private uploadFileService: UploadFlashCardsService,
+              private router: Router,
+              private alertService: AlertService,
+              private store: Store<FlashcardGroupState>) {
   }
 
   ngOnInit() {
@@ -27,6 +33,7 @@ export class FlashcardsUploadComponent implements OnInit, OnDestroy {
     this.uploadFileService.uploadFile(this.selectedFile)
       .subscribe(() => {
           this.alertService.successAlert("Upload Succeed!");
+          this.store.dispatch(new flashcardGroupsActions.LoadFlashcardGroups());
           setTimeout(() => {
             this.router.navigate(['flashcards/all'])
           }, 1000);

@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/flashcards")
-public class StoreFlashCardController {
+public class StoreFlashcardController {
 
     private final Store storeFlashCard;
 
     private final ModelMapper mapper = new ModelMapper();
 
-    public StoreFlashCardController(Store storeFlashCard) {
+    public StoreFlashcardController(Store storeFlashCard) {
         this.storeFlashCard = storeFlashCard;
     }
 

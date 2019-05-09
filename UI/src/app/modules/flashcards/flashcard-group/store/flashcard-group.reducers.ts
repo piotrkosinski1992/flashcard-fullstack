@@ -14,20 +14,25 @@ const initialState: FlashcardGroupState = {
 
 export function flashcardGroupReducer(state = initialState, action: FlashcardGroupActions) {
   switch (action.type) {
+    case FlashcardGroupActionTypes.CLEAR_ACTIVE_FLASHCARD_GROUP: {
+      return {
+        ...state,
+        activeFlashcardGroup: []
+      }
+    }
     case FlashcardGroupActionTypes.LOAD_ACTIVE_FLASHCARD_GROUP_SUCCESS: {
       return {
         ...state,
         activeFlashcardGroup: action.activeFlashcardGroup
       }
     }
-
-    case FlashcardGroupActionTypes.LOAD_FLASHCARD_GROUPS_SUCCESS: {
+    case FlashcardGroupActionTypes.LOAD_FLASHCARD_GROUP_SUCCESS: {
       return {
         ...state,
         flashcardGroups: action.flashcardGroups
       };
     }
-    case FlashcardGroupActionTypes.LOAD_FLASHCARD_GROUPS_FAILED: {
+    case FlashcardGroupActionTypes.LOAD_FLASHCARD_GROUP_FAILED: {
       return {
         ...state
       };

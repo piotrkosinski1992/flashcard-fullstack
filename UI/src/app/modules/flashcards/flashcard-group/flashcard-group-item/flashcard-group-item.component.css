@@ -1,0 +1,17 @@
+li:hover {
+  color: #2693ff;
+}
+
+li:after {
+  position: absolute;
+  top: 2.1em;
+  left: 0.9em;
+  width: 2px;
+  height: calc(100% - 2em);
+  content: '';
+  z-index: 0;
+}
+
+button  {
+  float: left;
+}

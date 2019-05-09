@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/flashcard")
-public class FindFlashCardController {
+public class FindFlashcardController {
 
     private final Find findFlashCard;
     private final ModelMapper mapper = new ModelMapper();
 
-    public FindFlashCardController(Find findFlashCard) {
+    public FindFlashcardController(Find findFlashCard) {
         this.findFlashCard = findFlashCard;
     }
 

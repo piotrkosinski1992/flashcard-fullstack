@@ -3,7 +3,6 @@ import * as flashcardGroupsActions from "../store/flashcard-group.actions";
 import {Store} from "@ngrx/store";
 import {FlashcardGroupState} from "../store/flashcard-group.reducers";
 import {Router} from "@angular/router";
-import {FlashcardGroup} from "../flashcard-group.model";
 
 @Component({
   selector: 'app-flashcard-group-item',
@@ -12,7 +11,7 @@ import {FlashcardGroup} from "../flashcard-group.model";
 })
 export class FlashcardGroupItemComponent implements OnInit {
 
-  @Input() flashcardGroup: FlashcardGroup;
+  @Input() flashcardGroup;
 
   constructor(private store: Store<FlashcardGroupState>, private router: Router) { }
 
@@ -22,5 +21,11 @@ export class FlashcardGroupItemComponent implements OnInit {
   onGroupSelected(groupName: string) {
     this.store.dispatch(new flashcardGroupsActions.LoadActiveFlashcardGroup(groupName));
     this.router.navigate(['flashcards/' + groupName]);
+  }
+
+  onDeleteFlashcardGroup(groupName: string) {
+      if(confirm("Are you sure to delete " + name)) {
+        this.store.dispatch(new flashcardGroupsActions.DeleteFlashcardGroup(groupName));
+      }
   }
 }

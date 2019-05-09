@@ -18,4 +18,8 @@ export class FlashcardGroupService {
   getActiveFlashcardGroup(groupName: string): Observable<Flashcard[]> {
     return this.http.get<Flashcard[]>('/api/flashcards/group/' + groupName);
   }
+
+  deleteFlashcardGroup(groupName: string) {
+    return this.http.post('/api/flashcards/group/' + groupName, {});
+  }
 }

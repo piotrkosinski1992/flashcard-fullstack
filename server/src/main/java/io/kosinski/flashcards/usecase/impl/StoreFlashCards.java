@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-class StoreFlashCards implements Store {
+public class StoreFlashCards implements Store {
 
     private final FlashCardRepo flashCardRepo;
 

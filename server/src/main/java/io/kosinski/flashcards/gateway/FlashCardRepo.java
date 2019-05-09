@@ -17,4 +17,6 @@ public interface FlashCardRepo extends JpaRepository<FlashCard, Integer> {
     Collection<FlashCard> findByGroupName(String groupName);
 
     int countByGroupName(String groupName);
+
+    void removeByGroupName(String groupName);
 }

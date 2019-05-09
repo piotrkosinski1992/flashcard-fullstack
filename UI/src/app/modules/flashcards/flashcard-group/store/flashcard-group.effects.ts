@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Router} from '@angular/router';
-import {FlashcardGroupActionTypes, LoadActiveFlashcardGroup} from './flashcard-group.actions';
+import {DeleteFlashcardGroup, FlashcardGroupActionTypes, LoadActiveFlashcardGroup} from './flashcard-group.actions';
 import {Action} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class FlashcardGroupEffects {
 
   @Effect()
   loadFlashcardGroups: Observable<Action> = this.actions$
-    .pipe(ofType(FlashcardGroupActionTypes.LOAD_FLASHCARD_GROUPS),
+    .pipe(ofType(FlashcardGroupActionTypes.LOAD_FLASHCARD_GROUP),
       mergeMap(() =>
         this.flashcardGroupService.getFlashCardGroups().pipe(
           map(groups => {
@@ -34,4 +34,13 @@ export class FlashcardGroupEffects {
           })
         )));
 
+  @Effect()
+  deleteFlashcardGroup: Observable<Action> = this.actions$
+    .pipe(ofType(FlashcardGroupActionTypes.DELETE_FLASHCARD_GROUP),
+      mergeMap((result: DeleteFlashcardGroup ) =>
+        this.flashcardGroupService.deleteFlashcardGroup(result.groupName).pipe(
+          map(() => {
+            return new flashcardGroupsActions.LoadFlashcardGroups()
+          })
+        )));
 }

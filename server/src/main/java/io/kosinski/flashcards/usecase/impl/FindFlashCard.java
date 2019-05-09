@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-class FindFlashCard implements Find {
+public class FindFlashCard implements Find {
 
     private final FlashCardRepo flashCardRepo;
 
@@ -27,3 +27,4 @@ class FindFlashCard implements Find {
         return flashCardRepo.findAll();
     }
 }
+

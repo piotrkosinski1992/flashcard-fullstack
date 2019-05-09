@@ -1,7 +1,13 @@
 <ul class="list-group">
   <app-flashcard-group-item
-    *ngFor="let flashcardGroup of flashcardGroups"
+    *ngFor="let flashcardGroup of (flashcardGroupsState | async).flashcardGroups"
     [flashcardGroup] = flashcardGroup
   ></app-flashcard-group-item>
 </ul>
+<div class="row">
+  <div class="col-md-12">
+    <button type="button" (click)="onBackClicked()" class="btn-danger">Back</button>
+  </div>
+</div>
+
 

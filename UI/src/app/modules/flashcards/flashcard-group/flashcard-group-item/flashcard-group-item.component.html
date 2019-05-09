@@ -1,5 +1,14 @@
-<li class="list-group-item d-flex justify-content-between align-items-center"
-    (click)="onGroupSelected(flashcardGroup.name)">
-  {{flashcardGroup.name}}
-  <span class="badge badge-primary badge-pill">{{flashcardGroup.amount}}</span>
-</li>
+<div>
+  <li class="list-group-item d-flex justify-content-between align-items-center"
+      (click)="onGroupSelected(flashcardGroup.name)">
+    {{flashcardGroup.name}}
+    <span class="badge badge-primary badge-pill">
+      {{flashcardGroup.amount}}
+    </span>
+  </li>
+    <button id="delete" class="btn-danger" (click)="onDeleteFlashcardGroup(flashcardGroup.name)">delete</button>
+</div>
+<br/>
+<br/>
+
+

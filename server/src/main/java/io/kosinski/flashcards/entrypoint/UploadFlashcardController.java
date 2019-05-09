@@ -11,11 +11,11 @@ import java.util.Collection;
 
 @RestController
 @CrossOrigin(allowedHeaders = "*", value = "http://localhost:4200")
-public class UploadFlashCardController
+public class UploadFlashcardController
 {
     private final UploadFlashCards uploadFlashCards;
 
-    public UploadFlashCardController(UploadFlashCards uploadFlashCards) {
+    public UploadFlashcardController(UploadFlashCards uploadFlashCards) {
         this.uploadFlashCards = uploadFlashCards;
     }
 
