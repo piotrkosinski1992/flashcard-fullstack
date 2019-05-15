@@ -21,8 +21,4 @@ export class FlashcardGroupComponent implements OnInit {
     this.flashcardGroupsState = this.store.select('flashcardGroups')
 
   }
-
-  onBackClicked() {
-    this.router.navigate(['/'])
-  }
 }

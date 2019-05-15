@@ -1,0 +1,24 @@
+.main {
+  background-color: sandybrown;
+  margin-top: 10%;
+  margin-left: 33%;
+  width: 26%;
+  border-radius: 10px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 400%;
+  text-align: center;
+  font-family: "Agency FB";
+}
+
+input {
+  margin-left: 3px;
+}
+
+
+button  {
+  padding: 5px;
+  border-radius: 6px;
+}

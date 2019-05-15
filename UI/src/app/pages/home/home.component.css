@@ -4,9 +4,26 @@
   margin-right: auto;
 }
 
+.list-group {
+  margin-top: 2%;
+}
+
+.list-group-item {
+  margin-left: 27%;
+  width: 40%;
+  text-align: center;
+  font-size: 220%;
+  font-family: "Agency FB";
+  background-color: sandybrown;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+
 
 li:hover {
-  color: #2693ff;
+  color: white;
+  border-color: green;
+  border-width: 2px;
 }
 
 li:after {

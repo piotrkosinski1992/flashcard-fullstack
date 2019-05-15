@@ -1,10 +1,12 @@
-<div>
+<div class="main">
   <div class="col-md-12">
     <form [formGroup]="flashCardsForm" (ngSubmit)="onSave()">
       <div class="row">
         <div class="col-xs-12">
-          <label class="label">Flashcard group name:
-            <input required formControlName="groupName" type="text" id="groupName" class="form-control"></label>
+          <div class="input-container">
+            <label class="label">Flashcard group name:</label>
+            <input required formControlName="groupName" type="text" id="groupName" class="form-control">
+          </div>
         </div>
       </div>
       <div class="col-xs-12" formArrayName="flashcards">
@@ -25,7 +27,7 @@
         <div class="col-md-12">
           <button type="button" class="btn-default" (click)="onAddFlashcard()">Add flashcard</button>
           <button type="submit" class="btn-success" [disabled]="!flashCardsForm.valid">Save All</button>
-          <button type="button" class="btn-danger">Cancel All</button>
+          <button type="button" class="btn-danger" [routerLink]="['/']">Cancel</button>
         </div>
       </div>
     </form>

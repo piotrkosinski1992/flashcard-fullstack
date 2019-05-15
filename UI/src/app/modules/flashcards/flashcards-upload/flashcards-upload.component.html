@@ -1,3 +1,9 @@
-<h1>File upload</h1>
-<input type="file" (change)="onFileSelected($event)">
-<button type="button" (click)="onUpload()">Submit</button>
+<div class="main">
+  <div class="col-md-12">
+    <button type="button" [routerLink]="['/']" class="btn-danger">Back</button>
+  </div>
+  <h1 class="text">File upload</h1>
+  <input type="file" (change)="onFileSelected($event)">
+  <button type="button"  class="btn-success" (click)="onUpload()">Submit</button>
+</div>
+

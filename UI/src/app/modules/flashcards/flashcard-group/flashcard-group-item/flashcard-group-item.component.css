@@ -1,5 +1,13 @@
+.main {
+  margin-left: 30%;
+  width: 70%;
+  float:left;
+}
+
 li:hover {
-  color: #2693ff;
+  color: white;
+  border-color: green;
+  border-width: 2px;
 }
 
 li:after {
@@ -14,4 +22,21 @@ li:after {
 
 button  {
   float: left;
+  width: 20%;
+  height: 80px;
+  margin-left: 2px;
 }
+
+li {
+  text-align: center;
+  font-size: 220%;
+  font-family: "Agency FB";
+  background-color: sandybrown;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  float: left;
+  width: 70%;
+  height: 80px
+
+}
+

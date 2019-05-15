@@ -1,13 +1,13 @@
-<div>
+<div class="main">
   <div class="col-md-12">
-      <div class="col-xs-12">
+      <div class="cards">
         <div class="row"
              *ngFor="let flashcard of (flashcardGroupsState | async).activeFlashcardGroup"
              style="margin-top: 10px;">
-          <div class="col-xs-12">
+          <div class="card">
             <div class="form-control">{{flashcard.heads}}</div>
           </div>
-          <div class="col-xs-12">
+          <div class="card">
             <div class="form-control" >{{flashcard.tails}}</div>
           </div>
 <!--
@@ -15,16 +15,10 @@
 -->
         </div>
       </div>
-    <br/>
-    <br/>
-      <div class="row">
-        <div class="col-md-12">
 <!--
           <button type="button" class="btn-default" (click)="onAddFlashcard()">Add flashcard</button>
 -->
           <button type="submit" class="btn-success">Start</button>
           <button type="button" (click)="onBackClicked()" class="btn-danger">Back</button>
-        </div>
-      </div>
   </div>
 </div>

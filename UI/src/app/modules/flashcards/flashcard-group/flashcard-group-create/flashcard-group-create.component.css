@@ -1,13 +1,17 @@
-input {
-  margin-bottom: 5px;
+.main {
+  margin-left: 30%;
+  width: 50%;
 }
 
 .col-xs-12 {
   margin-left: 10px;
 }
-
-label { margin-left: 25px; font-size: 200%}
-
+.label {
+  font-size: 220%;
+  font-family: "Agency FB";
+  float: left;
+  width: 70%;
+}
 
 button:disabled,
 button[disabled]{
@@ -18,4 +22,18 @@ button[disabled]{
 
 input.ng-invalid {
   border: 1px solid red;
+}
+
+button  {
+  margin-right: 5px;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+input {
+  margin-bottom: 5px;
+}
+
+.input-container {
+  float: left;
 }
