@@ -1,8 +1,9 @@
-package io.kosinski.flashcards.usecase.impl
+package io.kosinski.flashcards.usecase.impl.flashcard
 
 import io.kosinski.flashcards.domain.FlashCard
 import io.kosinski.flashcards.exception.InvalidFileFormat
 import io.kosinski.flashcards.exception.InvalidFlashCardData
+import io.kosinski.flashcards.usecase.impl.flashcard.UploadFlashCards
 import spock.lang.Specification
 
 class UploadFlashCardsTest extends Specification {

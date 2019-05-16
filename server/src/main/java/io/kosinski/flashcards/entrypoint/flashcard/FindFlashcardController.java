@@ -1,4 +1,4 @@
-package io.kosinski.flashcards.entrypoint;
+package io.kosinski.flashcards.entrypoint.flashcard;
 
 import io.kosinski.flashcards.entrypoint.dto.FlashCardDTO;
 import io.kosinski.flashcards.usecase.Find;

@@ -1,8 +1,8 @@
-package io.kosinski.flashcards.entrypoint;
+package io.kosinski.flashcards.entrypoint.flashcard;
 
 import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
-import io.kosinski.flashcards.usecase.impl.FindFlashcardGroups;
+import io.kosinski.flashcards.usecase.impl.flashcard.FindFlashcardGroups;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

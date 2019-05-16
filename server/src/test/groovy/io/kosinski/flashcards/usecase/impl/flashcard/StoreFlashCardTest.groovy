@@ -1,8 +1,9 @@
-package io.kosinski.flashcards.usecase.impl
+package io.kosinski.flashcards.usecase.impl.flashcard
 
 import io.kosinski.flashcards.TestFlashCards
 import io.kosinski.flashcards.domain.FlashCard
 import io.kosinski.flashcards.gateway.FlashCardRepo
+import io.kosinski.flashcards.usecase.impl.flashcard.StoreFlashCards
 import spock.lang.Specification
 
 class StoreFlashCardTest extends Specification {

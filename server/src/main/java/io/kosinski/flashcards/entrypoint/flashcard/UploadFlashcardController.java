@@ -1,7 +1,7 @@
-package io.kosinski.flashcards.entrypoint;
+package io.kosinski.flashcards.entrypoint.flashcard;
 
 import io.kosinski.flashcards.domain.FlashCard;
-import io.kosinski.flashcards.usecase.impl.UploadFlashCards;
+import io.kosinski.flashcards.usecase.impl.flashcard.UploadFlashCards;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;

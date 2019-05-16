@@ -1,4 +1,4 @@
-package io.kosinski.flashcards.entrypoint;
+package io.kosinski.flashcards.entrypoint.flashcard;
 
 import io.kosinski.flashcards.domain.FlashCard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardDTO;
