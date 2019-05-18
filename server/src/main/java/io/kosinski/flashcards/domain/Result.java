@@ -78,7 +78,7 @@ public class Result {
     static class ResultBuilder {
         private Result result;
 
-        public ResultBuilder(String flashcardGroupName) {
+        ResultBuilder(String flashcardGroupName) {
             result = new Result();
             result.setGroupName(flashcardGroupName);
         }

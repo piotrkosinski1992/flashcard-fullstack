@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {AppState} from "../../store/app.reducers";
 import {ActivatedRoute, Router} from "@angular/router";
-import * as flashcardGroupActions from "../flashcard-group/store/flashcard-group.actions"
+import * as gameActions from "../../game/store/game.actions"
 import {Observable} from "rxjs";
-import {FlashcardGroupState} from "../flashcard-group/store/flashcard-group.reducers";
+import {GameState} from "../../game/store/game.reducers";
 
 @Component({
   selector: 'app-flashcards-list',
@@ -14,17 +13,17 @@ import {FlashcardGroupState} from "../flashcard-group/store/flashcard-group.redu
 export class FlashcardsListComponent implements OnInit {
 
   //flashcards: Flashcard[];
-  flashcardGroupsState: Observable<FlashcardGroupState>;
+  gameState: Observable<GameState>;
 
-  constructor(private store: Store<AppState>, private router: Router, private route: ActivatedRoute) { }
+  constructor(private store: Store<GameState>, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.flashcardGroupsState = this.store.select('flashcardGroups')
+    this.gameState = this.store.select('game')
     //this.store.select('flashcardGroups').subscribe(result => this.flashcards = result.activeFlashcardGroup)
   }
 
   onBackClicked() {
-    this.store.dispatch(new flashcardGroupActions.ClearActiveFlashcardGroup());
+    this.store.dispatch(new gameActions.ClearActiveFlashcardGroup());
     this.router.navigate(['../all'], {relativeTo: this.route})
   }
 }

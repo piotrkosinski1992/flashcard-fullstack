@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import * as flashcardGroupsActions from "../store/flashcard-group.actions";
+import * as gameActions from "../../../game/store/game.actions"
+import * as flashcardGroupActions from "../store/flashcard-group.actions"
 import {Store} from "@ngrx/store";
-import {FlashcardGroupState} from "../store/flashcard-group.reducers";
 import {Router} from "@angular/router";
+import {FlashcardGroupActions} from "../store/flashcard-group.actions";
+import {GameActions} from "../../../game/store/game.actions";
 
 @Component({
   selector: 'app-flashcard-group-item',
@@ -13,19 +15,19 @@ export class FlashcardGroupItemComponent implements OnInit {
 
   @Input() flashcardGroup;
 
-  constructor(private store: Store<FlashcardGroupState>, private router: Router) { }
+  constructor(private gameStore: Store<GameActions>, private flashcardGroupStore: Store<FlashcardGroupActions>, private router: Router) { }
 
   ngOnInit() {
   }
 
   onGroupSelected(groupName: string) {
-    this.store.dispatch(new flashcardGroupsActions.LoadActiveFlashcardGroup(groupName));
+    this.gameStore.dispatch(new gameActions.LoadActiveFlashcardGroup(groupName));
     this.router.navigate(['flashcards/' + groupName]);
   }
 
   onDeleteFlashcardGroup(groupName: string) {
       if(confirm("Are you sure to delete " + name)) {
-        this.store.dispatch(new flashcardGroupsActions.DeleteFlashcardGroup(groupName));
+        this.flashcardGroupStore.dispatch(new flashcardGroupActions.DeleteFlashcardGroup(groupName));
       }
   }
 }

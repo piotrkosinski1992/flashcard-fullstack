@@ -2,7 +2,7 @@
   <div class="col-md-12">
       <div class="cards">
         <div class="row"
-             *ngFor="let flashcard of (flashcardGroupsState | async).activeFlashcardGroup"
+             *ngFor="let flashcard of (gameState | async).activeFlashcardGroup"
              style="margin-top: 10px;">
           <div class="card">
             <div class="form-control">{{flashcard.heads}}</div>

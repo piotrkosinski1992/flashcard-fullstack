@@ -5,6 +5,7 @@ import {HomeComponent} from './pages/home/home.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'flashcards', loadChildren: './modules/flashcards/flashcards.module#FlashcardsModule'},
+  {path: 'game', loadChildren: './modules/game/game.module#GameModule'},
 ];
 
 @NgModule({
