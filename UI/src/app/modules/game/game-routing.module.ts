@@ -9,7 +9,7 @@ const gameRoutes: Routes = [
   {
   path: '', component: GameComponent, children : [
   {path: 'question', component: GameQuestionComponent},
-  {path: 'answer', component: GameAnswerComponent}
+  {path: 'answer/:answer', component: GameAnswerComponent}
   ]
 }
 ];

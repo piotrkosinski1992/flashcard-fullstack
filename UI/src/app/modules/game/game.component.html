@@ -1,0 +1,5 @@
+<div *ngIf="questionsLeft !== 0" class="questions-left">
+  <h4>Questions left: {{questionsLeft}}</h4>
+</div>
+<h3 *ngIf="questionsLeft == 0">WYNIK TUTAJ</h3>
+<router-outlet></router-outlet>

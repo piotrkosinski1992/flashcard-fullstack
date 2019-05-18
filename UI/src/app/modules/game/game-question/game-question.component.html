@@ -1,0 +1,3 @@
+<h2>{{(gameState | async).activeFlashcard.heads}}</h2>
+<input [(ngModel)]="answer">
+<button type="submit" (click)="onCheckAnswer()">Check Answer</button>

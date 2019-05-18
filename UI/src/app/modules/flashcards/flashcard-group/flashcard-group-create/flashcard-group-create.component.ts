@@ -5,9 +5,6 @@ import {FlashcardGroup} from "../flashcard-group.model";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AlertService} from "../../../shared/alert/alert.service";
-import * as flashcardGroupsActions from "../store/flashcard-group.actions";
-import {Store} from "@ngrx/store";
-import {FlashcardGroupState} from "../store/flashcard-group.reducers";
 
 @Component({
   selector: 'app-flashcard-group-create',
@@ -21,8 +18,7 @@ export class FlashcardGroupCreateComponent implements OnInit, OnDestroy {
 
   constructor(private uploadFlashCardsService: UploadFlashCardsService,
               private router: Router,
-              private alertService: AlertService,
-              private store: Store<FlashcardGroupState>) {
+              private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -44,7 +40,6 @@ export class FlashcardGroupCreateComponent implements OnInit, OnDestroy {
     this.uploadFlashCardsService.uploadFlashcardGroup(new FlashcardGroup(this.flashCardsForm.value['groupName'], this.flashCardsForm.value['flashcards']))
       .subscribe(() => {
           this.alertService.successAlert("Upload Succeed!");
-          this.store.dispatch(new flashcardGroupsActions.LoadFlashcardGroups());
           setTimeout(() => {
             this.router.navigate(['flashcards/all'])
           }, 1000);

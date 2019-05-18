@@ -18,7 +18,7 @@ public class FindFlashcardGroups {
     }
 
     public Collection<FlashCardGroupDTO> all() {
-        return flashCardRepo.findDistinctGroupNames()
+        return flashCardRepo.findSortedGroupNames()
                 .stream()
                 .map(groupName -> FlashCardGroupDTO.create(groupName, getCountByGroupName(groupName)))
                 .collect(Collectors.toList());

@@ -4,6 +4,7 @@ import {FlashcardGroupState} from './store/flashcard-group.reducers';
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {AppState} from "../../store/app.reducers";
+import * as flashcardGroupsActions from "./store/flashcard-group.actions";
 
 @Component({
   selector: 'app-flashcard-group',
@@ -14,11 +15,11 @@ export class FlashcardGroupComponent implements OnInit {
 
   flashcardGroupsState: Observable<FlashcardGroupState>;
 
-  constructor(private store: Store<AppState>, private router: Router) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new flashcardGroupsActions.LoadFlashcardGroups());
     this.flashcardGroupsState = this.store.select('flashcardGroups')
-
   }
 }

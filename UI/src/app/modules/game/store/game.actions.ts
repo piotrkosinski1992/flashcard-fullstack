@@ -4,9 +4,37 @@ import {LoadFlashcardGroups} from "../../flashcards/flashcard-group/store/flashc
 
 
 export enum GameActionTypes {
-  LOAD_ACTIVE_FLASHCARD_GROUP = ' [flashcardGroup] trigger loading ACTIVE flashcard group',
-  LOAD_ACTIVE_FLASHCARD_GROUP_SUCCESS = ' [flashcardGroup] loading  ACTIVE flashcard group SUCCESS',
-  CLEAR_ACTIVE_FLASHCARD_GROUP = ' [flashcardGroup] clear  ealier ACTIVE flashcard group'
+  LOAD_ACTIVE_FLASHCARD_GROUP = ' [game] trigger loading ACTIVE flashcard group',
+  LOAD_ACTIVE_FLASHCARD_GROUP_SUCCESS = ' [game] loading  ACTIVE flashcard group SUCCESS',
+  CLEAR_ACTIVE_FLASHCARD_GROUP = ' [game] clear  ealier ACTIVE flashcard group',
+
+  SET_ACTIVE_FLASHCARD = '[game] set active flascard',
+  DELETE_FLASHCARD = '[game] delete flashcard',
+
+  INCREMENT_CORRECT_ANSWERS = '[game] increment CORRECT answers',
+  INCREMENT_INCORRECT_ANSWERS = '[game] increment INCORRECT answers',
+}
+
+export class IncrementCorrectAnswers implements Action {
+  readonly type = GameActionTypes.INCREMENT_CORRECT_ANSWERS;
+}
+
+export class IncrementIncorrectAnswers implements Action {
+  readonly type = GameActionTypes.INCREMENT_INCORRECT_ANSWERS;
+}
+
+export class DeleteFlashcard implements Action {
+  readonly type = GameActionTypes.DELETE_FLASHCARD;
+
+  constructor(public flashcard: Flashcard) {
+  }
+}
+
+export class SetActiveFlashcard implements Action {
+  readonly type = GameActionTypes.SET_ACTIVE_FLASHCARD;
+
+  constructor(public flashcard: Flashcard){
+  }
 }
 
 export class ClearActiveFlashcardGroup implements Action {
@@ -32,4 +60,9 @@ export type GameActions =
   LoadFlashcardGroups |
   LoadActiveFlashcardGroup |
   LoadActiveFlashcardGroupSuccess |
-  ClearActiveFlashcardGroup
+  ClearActiveFlashcardGroup |
+  SetActiveFlashcard |
+  DeleteFlashcard |
+  IncrementCorrectAnswers |
+  IncrementIncorrectAnswers
+

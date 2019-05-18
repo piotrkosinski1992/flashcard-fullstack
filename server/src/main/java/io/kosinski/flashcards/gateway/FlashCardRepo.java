@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface FlashCardRepo extends JpaRepository<FlashCard, Integer> {
 
-    @Query("SELECT DISTINCT card.groupName FROM FlashCard card")
-    List<String> findDistinctGroupNames();
+    @Query("SELECT DISTINCT card.groupName FROM FlashCard card ORDER BY card.groupName")
+    List<String> findSortedGroupNames();
 
     boolean existsByGroupName(String groupName);
 
