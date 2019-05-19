@@ -5,7 +5,7 @@ import io.kosinski.flashcards.usecase.impl.result.SaveResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(allowedHeaders = "*", value = "http://localhost:4200")
+@CrossOrigin(allowedHeaders = "*", value = "http://locahost:4200")
 @RequestMapping(value = "/result")
 public class SaveResultController {
 
@@ -17,6 +17,7 @@ public class SaveResultController {
 
     @PostMapping
     public int saveResult(@RequestBody Result result) {
+        System.out.println(result.toString());
         return saveResult.save(result);
     }
 }

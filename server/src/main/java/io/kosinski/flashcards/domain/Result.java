@@ -99,4 +99,16 @@ public class Result {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "id=" + id +
+                ", correctAnswers=" + correctAnswers +
+                ", incorrectAnswers=" + incorrectAnswers +
+                ", finalScore=" + finalScore +
+                ", nickname='" + nickname + '\'' +
+                ", groupName='" + groupName + '\'' +
+                '}';
+    }
 }

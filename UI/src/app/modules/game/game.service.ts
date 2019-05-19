@@ -6,6 +6,7 @@ import {GameState} from "./store/game.reducers";
 import {Store} from "@ngrx/store";
 import * as gameActions from "../game/store/game.actions"
 import {Router} from "@angular/router";
+import {Result} from "./result.model";
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class GameService {
 
   generateRandomNumber(arrayLength: number): number {
     return Math.floor(Math.random() * (arrayLength + 1));
+  }
+
+  saveResult(result: Result): Observable<number> {
+    return this.http.post<number>('/api/result', result);
   }
 }

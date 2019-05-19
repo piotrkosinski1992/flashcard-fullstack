@@ -2,23 +2,34 @@ import {Flashcard} from "../../flashcards/flashcard.model";
 import {GameActions, GameActionTypes} from "./game.actions";
 
 export interface GameState {
+  activeGroupName: string;
   activeFlashcardGroup: Flashcard[]
   activeFlashcard: Flashcard
   correctAnswers: number,
   incorrectAnswers: number,
-  questionsLeft: number
+  questionsLeft: number,
+  finalScore: number
 }
 
 const initialState: GameState = {
+  activeGroupName: null,
   activeFlashcardGroup: [],
   activeFlashcard: null,
   correctAnswers: 0,
   incorrectAnswers: 0,
-  questionsLeft: 0
+  questionsLeft: 0,
+  finalScore: 0
 };
 
 export function gameReducer(state = initialState, action: GameActions) {
   switch(action.type) {
+
+    case GameActionTypes.SAVE_GAME_RESULT_SUCCESS: {
+      return {
+        ...state,
+        finalScore: action.finalScore
+      }
+    }
 
     case GameActionTypes.INCREMENT_CORRECT_ANSWERS: {
       return {
@@ -57,7 +68,8 @@ export function gameReducer(state = initialState, action: GameActions) {
       return {
         ...state,
         activeFlashcardGroup: action.activeFlashcardGroup,
-        questionsLeft: action.activeFlashcardGroup.length
+        questionsLeft: action.activeFlashcardGroup.length,
+        activeGroupName: action.activeGroupName
       }
     }
 

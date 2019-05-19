@@ -1,5 +1,11 @@
-<div *ngIf="questionsLeft !== 0" class="questions-left">
-  <h4>Questions left: {{questionsLeft}}</h4>
+<div *ngIf="gameState.questionsLeft !== 0" class="questions-left">
+  <h4>Questions left: {{gameState.questionsLeft }}</h4>
 </div>
-<h3 *ngIf="questionsLeft == 0">WYNIK TUTAJ</h3>
+
+
+<div *ngIf="gameState.questionsLeft == 0">
+  <button (click)="calculateScore()">Calculate score</button>
+  <h3> {{gameState.finalScore}} %</h3>
+</div>
+
 <router-outlet></router-outlet>

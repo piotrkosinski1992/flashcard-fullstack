@@ -1,6 +1,7 @@
 import {Action} from "@ngrx/store";
 import {Flashcard} from "../../flashcards/flashcard.model";
 import {LoadFlashcardGroups} from "../../flashcards/flashcard-group/store/flashcard-group.actions";
+import {Result} from "../result.model";
 
 
 export enum GameActionTypes {
@@ -13,6 +14,24 @@ export enum GameActionTypes {
 
   INCREMENT_CORRECT_ANSWERS = '[game] increment CORRECT answers',
   INCREMENT_INCORRECT_ANSWERS = '[game] increment INCORRECT answers',
+
+  SAVE_GAME_RESULT = '[game] save game result',
+  SAVE_GAME_RESULT_SUCCESS = '[game] save game result SUCCESS'
+
+}
+
+export class SaveGameResult implements Action {
+  readonly type = GameActionTypes.SAVE_GAME_RESULT;
+
+  constructor(public result: Result) {
+  }
+}
+
+export class SaveGameResultSuccess implements Action {
+  readonly type = GameActionTypes.SAVE_GAME_RESULT_SUCCESS;
+
+  constructor(public finalScore: number) {
+  }
 }
 
 export class IncrementCorrectAnswers implements Action {
@@ -51,7 +70,7 @@ export class LoadActiveFlashcardGroup implements Action {
 export class LoadActiveFlashcardGroupSuccess implements Action {
   readonly type = GameActionTypes.LOAD_ACTIVE_FLASHCARD_GROUP_SUCCESS;
 
-  constructor(public activeFlashcardGroup: Flashcard[]) {
+  constructor(public activeFlashcardGroup: Flashcard[], public activeGroupName: string) {
   }
 }
 
@@ -64,5 +83,7 @@ export type GameActions =
   SetActiveFlashcard |
   DeleteFlashcard |
   IncrementCorrectAnswers |
-  IncrementIncorrectAnswers
+  IncrementIncorrectAnswers |
+  SaveGameResult |
+  SaveGameResultSuccess
 

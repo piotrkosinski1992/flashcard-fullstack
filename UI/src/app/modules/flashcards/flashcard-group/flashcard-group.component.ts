@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {FlashcardGroupState} from './store/flashcard-group.reducers';
-import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {AppState} from "../../store/app.reducers";
 import * as flashcardGroupsActions from "./store/flashcard-group.actions";

@@ -5,12 +5,15 @@ import {Action} from "@ngrx/store";
 import * as gameActions from "../../game/store/game.actions";
 import {map, mergeMap} from "rxjs/operators";
 import {Router} from "@angular/router";
-import {GameActionTypes, LoadActiveFlashcardGroup} from "./game.actions";
+import {GameActionTypes, LoadActiveFlashcardGroup, SaveGameResult} from "./game.actions";
 import {GameService} from "../game.service";
+import {Result} from "../result.model";
 
 
 @Injectable()
 export class GameEffects {
+
+  groupName: string;
 
   constructor(private actions$: Actions, private router: Router, private gameService: GameService) {
   }
@@ -21,7 +24,19 @@ export class GameEffects {
       mergeMap((result: LoadActiveFlashcardGroup ) =>
         this.gameService.getActiveFlashcardGroup(result.groupName).pipe(
           map(group => {
-            return new gameActions.LoadActiveFlashcardGroupSuccess(group)
+            return new gameActions.LoadActiveFlashcardGroupSuccess(group, group[0].groupName)
           })
         )));
+
+  @Effect()
+  saveResult: Observable<Action> = this.actions$.pipe(
+    ofType(GameActionTypes.SAVE_GAME_RESULT),
+    map((action: SaveGameResult) => action.result),
+    mergeMap((result: Result) =>
+      this.gameService.saveResult(result).pipe(
+        map((finalScore: number) => (new gameActions.SaveGameResultSuccess(finalScore))/*,
+        catchError(err => of(new productActions.CreateProductFail(err)))*/
+      ))
+    )
+  );
 }
