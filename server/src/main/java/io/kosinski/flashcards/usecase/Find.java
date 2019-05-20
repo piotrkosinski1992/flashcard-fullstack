@@ -1,12 +1,12 @@
 package io.kosinski.flashcards.usecase;
 
-import io.kosinski.flashcards.domain.FlashCard;
+import io.kosinski.flashcards.domain.Flashcard;
 
 import java.util.Collection;
 
 public interface Find {
 
-    FlashCard byId(Integer id);
+    Flashcard byId(Integer id);
 
-    Collection<FlashCard> all();
+    Collection<Flashcard> all();
 }

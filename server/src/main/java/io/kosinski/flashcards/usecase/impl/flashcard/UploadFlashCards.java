@@ -1,10 +1,12 @@
 package io.kosinski.flashcards.usecase.impl.flashcard;
 
-import io.kosinski.flashcards.domain.FlashCard;
+import io.kosinski.flashcards.domain.Flashcard;
+import io.kosinski.flashcards.domain.FlashcardGroup;
 import io.kosinski.flashcards.exception.GroupNameAlreadyExists;
 import io.kosinski.flashcards.exception.InvalidFileFormat;
 import io.kosinski.flashcards.exception.InvalidFlashCardData;
-import io.kosinski.flashcards.gateway.FlashCardRepo;
+import io.kosinski.flashcards.gateway.FlashcardGroupRepo;
+import io.kosinski.flashcards.gateway.FlashcardRepo;
 import io.kosinski.flashcards.usecase.Upload;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,13 @@ import java.util.stream.Collectors;
 @Service
 public class UploadFlashCards implements Upload {
 
-    private final FlashCardRepo flashCardRepo;
+    private final FlashcardRepo flashCardRepo;
+    private final FlashcardGroupRepo flashcardGroupRepo;
     private String groupName;
 
-    public UploadFlashCards(FlashCardRepo flashCardRepo) {
+    public UploadFlashCards(FlashcardRepo flashCardRepo, FlashcardGroupRepo flashcardGroupRepo) {
         this.flashCardRepo = flashCardRepo;
+        this.flashcardGroupRepo = flashcardGroupRepo;
     }
 
     @Override
@@ -31,12 +35,12 @@ public class UploadFlashCards implements Upload {
         }
 
         String[] flashCardsArray = splitDataBySeparator(data);
-        List<FlashCard> flashCardsList = mapArrayToListOfObjects(flashCardsArray);
+        List<Flashcard> flashCardsList = mapArrayToListOfObjects(flashCardsArray);
         flashCardRepo.saveAll(flashCardsList);
     }
 
     private boolean isGroupNameAlreadyExist(String groupName) {
-        return flashCardRepo.existsByGroupName(groupName);
+        return flashCardRepo.existsByFlashcardGroupGroupName(groupName);
     }
 
     private String prepareGroupName(String fileName) {
@@ -48,30 +52,35 @@ public class UploadFlashCards implements Upload {
     }
 
     @Override
-    public void uploadFromArray(Collection<FlashCard> flashcards, String groupName) {
+    public void uploadFromArray(Collection<Flashcard> flashcards, String groupName) {
         if (isGroupNameAlreadyExist(groupName)) {
             throw new GroupNameAlreadyExists(String.format("GroupName %s already exists", groupName));
         }
-        flashcards.forEach(flashcard -> flashcard.setGroupName(groupName));
-        flashCardRepo.saveAll(flashcards);
+
+        flashcardGroupRepo.save(new FlashcardGroup(flashcards, groupName));
+        //flashcards.forEach(flashcard -> flashcard.setGroupName(groupName));
+
+
+        //flashCardRepo.saveAll(flashcards);
     }
 
     private String[] splitDataBySeparator(String flashCards) {
         return flashCards.split(";");
     }
 
-    private List<FlashCard> mapArrayToListOfObjects(String[] flashCards) {
+    private List<Flashcard> mapArrayToListOfObjects(String[] flashCards) {
         return Arrays.stream(flashCards)
                 .map(this::mapStringToObject)
                 .collect(Collectors.toList());
     }
 
-    private FlashCard mapStringToObject(String flashCardString) {
+    private Flashcard mapStringToObject(String flashCardString) {
         String[] flashCard = flashCardString.split(",");
 
         validateFlashCardData(flashCard);
 
-        return FlashCard.of(flashCard[0].trim(), flashCard[1].trim(), groupName);
+        // TODO FLASHCARDY ZAPISAC W GRUPIE
+        return Flashcard.of(flashCard[0].trim(), flashCard[1].trim());
     }
 
     private void validateFlashCardData(String[] flashCard) {
@@ -80,7 +89,7 @@ public class UploadFlashCards implements Upload {
                     Arrays.toString(flashCard)));
         }
         if (flashCard[0].trim().isEmpty() || flashCard[1].trim().isEmpty()) {
-            throw new InvalidFlashCardData("FlashCard can't contain empty fields");
+            throw new InvalidFlashCardData("Flashcard can't contain empty fields");
         }
     }
 }

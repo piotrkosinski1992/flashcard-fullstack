@@ -1,9 +1,11 @@
 package io.kosinski.flashcards.usecase.impl.flashcard
 
-import io.kosinski.flashcards.domain.FlashCard
+
+import io.kosinski.flashcards.domain.Flashcard
 import io.kosinski.flashcards.exception.InvalidFileFormat
 import io.kosinski.flashcards.exception.InvalidFlashCardData
-import io.kosinski.flashcards.usecase.impl.flashcard.UploadFlashCards
+import io.kosinski.flashcards.gateway.FlashcardGroupRepo
+import io.kosinski.flashcards.gateway.FlashcardRepo
 import spock.lang.Specification
 
 class UploadFlashCardsTest extends Specification {
@@ -11,7 +13,7 @@ class UploadFlashCardsTest extends Specification {
     private UploadFlashCards uploadFlashCards
 
     def setup() {
-        uploadFlashCards = new UploadFlashCards()
+        uploadFlashCards = new UploadFlashCards(Mock(FlashcardRepo), Mock(FlashcardGroupRepo))
     }
 
     def "should map flashCard String into object"() {
@@ -46,7 +48,7 @@ class UploadFlashCardsTest extends Specification {
 
         then:
         InvalidFlashCardData ex = thrown()
-        ex.getMessage() == "FlashCard can't contain empty fields"
+        ex.getMessage() == "Flashcard can't contain empty fields"
     }
 
     def "should split data by separator"() {
@@ -65,7 +67,7 @@ class UploadFlashCardsTest extends Specification {
         String[] flashCardsArray = ["one,jeden", "two,dwa", "three,trzy"]
 
         when:
-        List<FlashCard> flashCardsList = uploadFlashCards.mapArrayToListOfObjects(flashCardsArray)
+        List<Flashcard> flashCardsList = uploadFlashCards.mapArrayToListOfObjects(flashCardsArray)
 
         then:
         flashCardsList.size() == 3

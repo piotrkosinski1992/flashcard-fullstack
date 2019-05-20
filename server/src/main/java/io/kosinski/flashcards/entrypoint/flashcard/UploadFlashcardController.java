@@ -1,6 +1,6 @@
 package io.kosinski.flashcards.entrypoint.flashcard;
 
-import io.kosinski.flashcards.domain.FlashCard;
+import io.kosinski.flashcards.domain.Flashcard;
 import io.kosinski.flashcards.usecase.impl.flashcard.UploadFlashCards;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
@@ -27,7 +27,7 @@ public class UploadFlashcardController
     }
 
     @PostMapping("/upload/array/{groupName}")
-    public void uploadFromArray(@RequestBody Collection<FlashCard> flashcards, @PathVariable String groupName) throws MaxUploadSizeExceededException
+    public void uploadFromArray(@RequestBody Collection<Flashcard> flashcards, @PathVariable String groupName) throws MaxUploadSizeExceededException
     {
         uploadFlashCards.uploadFromArray(flashcards, groupName);
     }

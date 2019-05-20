@@ -1,25 +1,26 @@
 package io.kosinski.flashcards.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public final class FlashCard {
+public final class Flashcard {
 
     @Id
     @GeneratedValue
     private Integer id;
     private String heads;
     private String tails;
-    private String groupName;
 
-    private FlashCard() {
+    @ManyToOne
+    @JoinColumn(name = "FLASHCARD_GROUP_NAME")
+    private FlashcardGroup flashcardGroup;
+
+    private Flashcard() {
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setFlashcardGroup(FlashcardGroup flashcardGroup) {
+        this.flashcardGroup = flashcardGroup;
     }
 
     public void setId(Integer id) {
@@ -38,13 +39,12 @@ public final class FlashCard {
         return tails;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public FlashcardGroup getFlashcardGroup() {
+        return flashcardGroup;
     }
 
-    public static FlashCard of(String heads, String tails, String groupName) {
-        FlashCard card = new FlashCard();
-        card.groupName = groupName;
+    public static Flashcard of(String heads, String tails) {
+        Flashcard card = new Flashcard();
         card.heads = heads;
         card.tails =  tails;
         return card;
@@ -54,7 +54,7 @@ public final class FlashCard {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FlashCard flashCard = (FlashCard) o;
+        Flashcard flashCard = (Flashcard) o;
         return Objects.equals(heads, flashCard.heads) &&
                 Objects.equals(tails, flashCard.tails);
     }
@@ -66,7 +66,7 @@ public final class FlashCard {
 
     @Override
     public String toString() {
-        return "FlashCard{" +
+        return "Flashcard{" +
                 "id=" + id +
                 ", heads='" + heads + '\'' +
                 ", tails='" + tails + '\'' +

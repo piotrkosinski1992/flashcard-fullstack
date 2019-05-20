@@ -1,7 +1,7 @@
 package io.kosinski.flashcards.usecase.impl.flashcard;
 
-import io.kosinski.flashcards.domain.FlashCard;
-import io.kosinski.flashcards.gateway.FlashCardRepo;
+import io.kosinski.flashcards.domain.Flashcard;
+import io.kosinski.flashcards.gateway.FlashcardRepo;
 import io.kosinski.flashcards.usecase.Store;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +10,19 @@ import java.util.Collection;
 @Service
 public class StoreFlashCards implements Store {
 
-    private final FlashCardRepo flashCardRepo;
+    private final FlashcardRepo flashCardRepo;
 
-    public StoreFlashCards(FlashCardRepo flashCardRepo) {
+    public StoreFlashCards(FlashcardRepo flashCardRepo) {
         this.flashCardRepo = flashCardRepo;
     }
 
     @Override
-    public void storeOne(FlashCard flashCard) {
+    public void storeOne(Flashcard flashCard) {
         flashCardRepo.save(flashCard);
     }
 
     @Override
-    public void storeAll(Collection<FlashCard> flashCards) {
-        flashCardRepo.saveAll(flashCards);
+    public void storeAll(Collection<Flashcard> flashcards) {
+        flashCardRepo.saveAll(flashcards);
     }
 }

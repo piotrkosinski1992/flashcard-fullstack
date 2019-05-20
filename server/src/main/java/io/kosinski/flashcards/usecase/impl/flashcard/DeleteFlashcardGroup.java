@@ -1,6 +1,6 @@
 package io.kosinski.flashcards.usecase.impl.flashcard;
 
-import io.kosinski.flashcards.gateway.FlashCardRepo;
+import io.kosinski.flashcards.gateway.FlashcardRepo;
 import io.kosinski.flashcards.usecase.Delete;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +9,16 @@ import javax.transaction.Transactional;
 @Service
 public class DeleteFlashcardGroup implements Delete {
 
-    private final FlashCardRepo flashCardRepo;
+    private final FlashcardRepo flashCardRepo;
 
-    public DeleteFlashcardGroup(FlashCardRepo flashCardRepo) {
+    public DeleteFlashcardGroup(FlashcardRepo flashCardRepo) {
         this.flashCardRepo = flashCardRepo;
     }
 
     @Transactional
     @Override
     public void deleteBy(String groupName) {
-        flashCardRepo.removeByGroupName(groupName);
+        //TODO
+        flashCardRepo.removeByFlashcardGroupGroupName(groupName);
     }
 }

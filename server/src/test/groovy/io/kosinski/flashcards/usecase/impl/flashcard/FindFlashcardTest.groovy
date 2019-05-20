@@ -1,25 +1,24 @@
 package io.kosinski.flashcards.usecase.impl.flashcard
 
 import io.kosinski.flashcards.TestFlashCards
-import io.kosinski.flashcards.domain.FlashCard
+import io.kosinski.flashcards.domain.Flashcard
 import io.kosinski.flashcards.exception.ResourceNotFound
-import io.kosinski.flashcards.gateway.FlashCardRepo
-import io.kosinski.flashcards.usecase.impl.flashcard.FindFlashCard
+import io.kosinski.flashcards.gateway.FlashcardRepo
 import spock.lang.Specification
 
-class FindFlashCardTest extends Specification {
+class FindFlashcardTest extends Specification {
 
-    FlashCardRepo flashCardRepoMock
+    FlashcardRepo flashCardRepoMock
     FindFlashCard findFlashCard
 
     def setup() {
-        flashCardRepoMock = Mock(FlashCardRepo.class)
+        flashCardRepoMock = Mock(FlashcardRepo.class)
         findFlashCard = new FindFlashCard(flashCardRepoMock)
     }
 
     def 'should return flashcard'() {
         given:
-        FlashCard testFlashCard = TestFlashCards.testFlashCard1
+        Flashcard testFlashCard = TestFlashCards.testFlashCard1
         flashCardRepoMock.findById(_) >> Optional.of(testFlashCard)
 
         when:
@@ -44,7 +43,7 @@ class FindFlashCardTest extends Specification {
 
     def 'should return flashcards'() {
         given:
-        Collection<FlashCard> testFlashCards = TestFlashCards.testFlashCards
+        Collection<Flashcard> testFlashCards = TestFlashCards.testFlashCards
         flashCardRepoMock.findAll() >> testFlashCards
 
         when:

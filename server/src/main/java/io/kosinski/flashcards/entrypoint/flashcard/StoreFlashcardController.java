@@ -1,6 +1,6 @@
 package io.kosinski.flashcards.entrypoint.flashcard;
 
-import io.kosinski.flashcards.domain.FlashCard;
+import io.kosinski.flashcards.domain.Flashcard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardDTO;
 import io.kosinski.flashcards.usecase.Store;
 import org.modelmapper.ModelMapper;
@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Never used, maybe convert to update?
 @RestController
 @RequestMapping(value = "/flashcards")
 public class StoreFlashcardController {
@@ -29,17 +30,17 @@ public class StoreFlashcardController {
 
     @PostMapping("/save/one")
     public ResponseEntity storeFlashCard(@RequestBody FlashCardDTO flashCardDTO) {
-        storeFlashCard.storeOne(mapper.map(flashCardDTO, FlashCard.class));
+        storeFlashCard.storeOne(mapper.map(flashCardDTO, Flashcard.class));
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @PostMapping("/save/all")
     public ResponseEntity storeFlashCard(@RequestBody Collection<FlashCardDTO> flashCardsDTO) {
 
-        List<FlashCard> flashCards = flashCardsDTO.stream().
-                map(card -> mapper.map(card, FlashCard.class)).collect(Collectors.toList());
+        List<Flashcard> flashcards = flashCardsDTO.stream().
+                map(card -> mapper.map(card, Flashcard.class)).collect(Collectors.toList());
 
-        storeFlashCard.storeAll(flashCards);
+        storeFlashCard.storeAll(flashcards);
         return new ResponseEntity(HttpStatus.CREATED);
     }
 

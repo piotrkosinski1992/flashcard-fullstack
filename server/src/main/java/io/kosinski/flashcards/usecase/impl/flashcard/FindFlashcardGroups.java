@@ -1,8 +1,8 @@
 package io.kosinski.flashcards.usecase.impl.flashcard;
 
-import io.kosinski.flashcards.domain.FlashCard;
+import io.kosinski.flashcards.domain.Flashcard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
-import io.kosinski.flashcards.gateway.FlashCardRepo;
+import io.kosinski.flashcards.gateway.FlashcardGroupRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -11,24 +11,20 @@ import java.util.stream.Collectors;
 @Service
 public class FindFlashcardGroups {
 
-    private final FlashCardRepo flashCardRepo;
+    private final FlashcardGroupRepo flashcardGroupRepo;
 
-    public FindFlashcardGroups(FlashCardRepo flashCardRepo) {
-        this.flashCardRepo = flashCardRepo;
+    public FindFlashcardGroups(FlashcardGroupRepo flashcardGroupRepo) {
+        this.flashcardGroupRepo = flashcardGroupRepo;
     }
 
     public Collection<FlashCardGroupDTO> all() {
-        return flashCardRepo.findSortedGroupNames()
+        return flashcardGroupRepo.findAllByOrderByGroupName()
                 .stream()
-                .map(groupName -> FlashCardGroupDTO.create(groupName, getCountByGroupName(groupName)))
+                .map(group -> FlashCardGroupDTO.create(group.getGroupName(), group.getGroupSize(), group.getFlashcards()))
                 .collect(Collectors.toList());
     }
 
-    private int getCountByGroupName(String groupName) {
-        return flashCardRepo.countByGroupName(groupName);
-    }
-
-    public Collection<FlashCard> byGroupName(String groupName) {
-        return flashCardRepo.findByGroupName(groupName);
+    public Collection<Flashcard> byGroupName(String groupName) {
+        return flashcardGroupRepo.findByGroupName(groupName);
     }
 }

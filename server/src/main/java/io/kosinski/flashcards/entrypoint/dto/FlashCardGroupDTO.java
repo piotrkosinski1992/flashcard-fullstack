@@ -1,33 +1,47 @@
 package io.kosinski.flashcards.entrypoint.dto;
 
+import io.kosinski.flashcards.domain.Flashcard;
+
+import java.util.Collection;
+
 public class FlashCardGroupDTO {
 
-    private String name;
-    private int amount;
+    private String groupName;
+    private int groupSize;
+    private Collection<Flashcard> flashcards;
 
     private FlashCardGroupDTO() {
     }
 
-    public static FlashCardGroupDTO create(String name, int amount) {
+    public static FlashCardGroupDTO create(String groupName, int groupSize, Collection<Flashcard> flashcards) {
         FlashCardGroupDTO dto = new FlashCardGroupDTO();
-        dto.setName(name);
-        dto.setAmount(amount);
+        dto.setGroupName(groupName);
+        dto.setGroupSize(groupSize);
+        dto.setFlashcards(flashcards);
         return dto;
     }
 
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    private void setName(String name) {
-        this.name = name;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getGroupSize() {
+        return groupSize;
     }
 
-    private void setAmount(int amount) {
-        this.amount = amount;
+    public void setGroupSize(int groupSize) {
+        this.groupSize = groupSize;
+    }
+
+    public Collection<Flashcard> getFlashcards() {
+        return flashcards;
+    }
+
+    public void setFlashcards(Collection<Flashcard> flashcards) {
+        this.flashcards = flashcards;
     }
 }

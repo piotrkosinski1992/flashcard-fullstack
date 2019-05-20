@@ -1,24 +1,23 @@
 package io.kosinski.flashcards.usecase.impl.flashcard
 
 import io.kosinski.flashcards.TestFlashCards
-import io.kosinski.flashcards.domain.FlashCard
-import io.kosinski.flashcards.gateway.FlashCardRepo
-import io.kosinski.flashcards.usecase.impl.flashcard.StoreFlashCards
+import io.kosinski.flashcards.domain.Flashcard
+import io.kosinski.flashcards.gateway.FlashcardRepo
 import spock.lang.Specification
 
-class StoreFlashCardTest extends Specification {
+class StoreFlashcardTest extends Specification {
 
-    FlashCardRepo flashCardRepoMock
+    FlashcardRepo flashCardRepoMock
     StoreFlashCards storeFlashCard
 
     def setup() {
-        flashCardRepoMock = Mock(FlashCardRepo.class)
+        flashCardRepoMock = Mock(FlashcardRepo.class)
         storeFlashCard = new StoreFlashCards(flashCardRepoMock)
     }
 
     def 'should store one flashcard'() {
         given:
-        FlashCard testFlashCard = TestFlashCards.testFlashCard1
+        Flashcard testFlashCard = TestFlashCards.testFlashCard1
 
         when:
         storeFlashCard.storeOne(testFlashCard)
@@ -29,7 +28,7 @@ class StoreFlashCardTest extends Specification {
 
     def 'should store all flashcards'() {
         given:
-        List<FlashCard> testFlashCards = TestFlashCards.testFlashCards
+        List<Flashcard> testFlashCards = TestFlashCards.testFlashCards
 
         when:
         storeFlashCard.storeAll(testFlashCards)
