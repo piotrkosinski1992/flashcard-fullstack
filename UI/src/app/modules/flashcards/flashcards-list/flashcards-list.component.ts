@@ -34,4 +34,8 @@ export class FlashcardsListComponent implements OnInit {
     this.gameService.pickRandomFlashcard();
     this.router.navigate(['/game/question'])
   }
+
+  onDeleteFlashcard() {
+
+  }
 }

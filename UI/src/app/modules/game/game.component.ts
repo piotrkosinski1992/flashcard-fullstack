@@ -13,6 +13,7 @@ import {Result} from "./result.model";
 export class GameComponent implements OnInit, OnDestroy {
 
   showScore: boolean = false;
+  nickname: string;
   gameState: GameState;
 
   constructor(private store: Store<AppState>) {
@@ -32,7 +33,8 @@ export class GameComponent implements OnInit, OnDestroy {
       .dispatch(new GameActions.SaveGameResult(
         new Result(this.gameState.correctAnswers,
                   this.gameState.incorrectAnswers,
-                  this.gameState.activeGroupName)));
+                  this.gameState.activeGroupName,
+                  this.nickname)));
     this.showScore = true;
   }
 }

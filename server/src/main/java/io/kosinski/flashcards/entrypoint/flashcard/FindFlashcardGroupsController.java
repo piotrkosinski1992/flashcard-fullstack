@@ -1,6 +1,5 @@
 package io.kosinski.flashcards.entrypoint.flashcard;
 
-import io.kosinski.flashcards.domain.FlashcardGroup;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
 import io.kosinski.flashcards.usecase.impl.flashcard.FindFlashcardGroups;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -3,6 +3,7 @@ package io.kosinski.flashcards.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Result {
@@ -21,6 +22,13 @@ public class Result {
 
     private String groupName;
 
+    private LocalDateTime timestamp;
+
+    @PrePersist
+    private void onCreate() {
+        timestamp = LocalDateTime.now().withNano(0);
+    }
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "FLASHCARD_GROUP_NAME")
@@ -32,6 +40,14 @@ public class Result {
 
     public void setFlashcardGroup(FlashcardGroup flashcardGroup) {
         this.flashcardGroup = flashcardGroup;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getId() {

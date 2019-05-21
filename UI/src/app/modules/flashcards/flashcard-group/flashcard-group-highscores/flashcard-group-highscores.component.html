@@ -1,10 +1,20 @@
-<div *ngFor="let result of flashcardGroup.results">
-  <div>
-    {{result.correctAnswers}}
-  </div>
-  <div>
-    {{result.incorrectAnswers}}
-  </div>
-  <br>
-  <br>
+<div class="button">
+    <button type="button" [routerLink]="['/']" class="btn-danger">Back</button>
 </div>
+<h2>Highscores: {{flashcardGroup.name}} </h2>
+<table>
+  <tr>
+    <th>Nick</th>
+    <th>Score [%]</th>
+    <th>Correct answers</th>
+    <th>Incorrect answers</th>
+    <th>Date</th>
+  </tr>
+  <tr *ngFor="let result of flashcardGroup.results">
+    <td>{{result.nickname}}</td>
+    <td>{{result.finalScore}}</td>
+    <td>{{result.correctAnswers}}</td>
+    <td>{{result.incorrectAnswers}}</td>
+    <td>{{result.timestamp}}</td>
+  </tr>
+</table>

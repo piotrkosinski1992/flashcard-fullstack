@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 
 @Entity
 public class FlashcardGroup {
@@ -19,7 +21,7 @@ public class FlashcardGroup {
     private Collection<Flashcard> flashcards = new ArrayList<>();
 
     @OneToMany(mappedBy = "flashcardGroup", cascade = CascadeType.ALL)
-    private Collection<Result> results = new ArrayList<>();
+    private List<Result> results = new ArrayList<>();
 
     private FlashcardGroup() {
     }
@@ -55,11 +57,12 @@ public class FlashcardGroup {
         this.flashcards = flashcards;
     }
 
-    public Collection<Result> getResults() {
+    public List<Result> getResults() {
+        results.sort((a,b) -> b.getFinalScore() - a.getFinalScore());
         return results;
     }
 
-    public void setResults(Collection<Result> results) {
+    public void setResults(List<Result> results) {
         this.results = results;
     }
 

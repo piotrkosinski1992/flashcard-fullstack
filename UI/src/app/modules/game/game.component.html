@@ -3,7 +3,11 @@
 </div>
 
 <div class="score" *ngIf="gameState.questionsLeft == 0">
-  <button *ngIf="!showScore" (click)="calculateScore()">Calculate score</button>
+  <div *ngIf="!showScore">
+    Your nick:
+    <input type="text" [(ngModel)]="nickname" >
+    <button (click)="calculateScore()">Calculate score</button>
+  </div>
   <div *ngIf="showScore">
     <h2> {{gameState.finalScore}} %</h2>
     <button [routerLink]="['/']">Exit</button>
