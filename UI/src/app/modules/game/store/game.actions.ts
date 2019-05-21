@@ -2,6 +2,7 @@ import {Action} from "@ngrx/store";
 import {Flashcard} from "../../flashcards/flashcard.model";
 import {LoadFlashcardGroups} from "../../flashcards/flashcard-group/store/flashcard-group.actions";
 import {Result} from "../result.model";
+import {FlashcardGroup} from "../../flashcards/flashcard-group/flashcard-group.model";
 
 
 export enum GameActionTypes {
@@ -70,7 +71,7 @@ export class LoadActiveFlashcardGroup implements Action {
 export class LoadActiveFlashcardGroupSuccess implements Action {
   readonly type = GameActionTypes.LOAD_ACTIVE_FLASHCARD_GROUP_SUCCESS;
 
-  constructor(public activeFlashcardGroup: Flashcard[], public activeGroupName: string) {
+  constructor(public group: FlashcardGroup) {
   }
 }
 

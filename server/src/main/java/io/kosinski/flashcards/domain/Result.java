@@ -1,8 +1,8 @@
 package io.kosinski.flashcards.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Result {
@@ -20,6 +20,19 @@ public class Result {
     private String nickname;
 
     private String groupName;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "FLASHCARD_GROUP_NAME")
+    private FlashcardGroup flashcardGroup;
+
+    public FlashcardGroup getFlashcardGroup() {
+        return flashcardGroup;
+    }
+
+    public void setFlashcardGroup(FlashcardGroup flashcardGroup) {
+        this.flashcardGroup = flashcardGroup;
+    }
 
     public int getId() {
         return id;

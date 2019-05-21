@@ -31,13 +31,13 @@ export class FlashcardGroupCreateComponent implements OnInit, OnDestroy {
     this.flashCards.push(new FormGroup({heads: new FormControl('heads2!'), tails: new FormControl('tails2!')}));
 
     this.flashCardsForm = new FormGroup({
-      'groupName': new FormControl(),
+      'name': new FormControl(),
       'flashcards': this.flashCards
     });
   }
 
   onSave() {
-    this.uploadFlashCardsService.uploadFlashcardGroup(new FlashcardGroup(this.flashCardsForm.value['groupName'], this.flashCardsForm.value['flashcards']))
+    this.uploadFlashCardsService.uploadFlashcardGroup(new FlashcardGroup(this.flashCardsForm.value['name'], this.flashCardsForm.value['flashcards']))
       .subscribe(() => {
           this.alertService.successAlert("Upload Succeed!");
           setTimeout(() => {

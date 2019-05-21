@@ -12,7 +12,7 @@ public interface FlashcardRepo extends JpaRepository<Flashcard, Integer> {
 /*    @Query("SELECT DISTINCT card.groupName FROM Flashcard card ORDER BY card.groupName")
     List<String> findSortedGroupNames();*/
 
-    boolean existsByFlashcardGroupGroupName(String groupName);
+    boolean existsByFlashcardGroupName(String groupName);
 
-    void removeByFlashcardGroupGroupName(String groupName);
+    void removeByFlashcardGroupName(String groupName);
 }

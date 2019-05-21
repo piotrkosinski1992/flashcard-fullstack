@@ -1,7 +1,6 @@
 .main {
-  margin-left: 30%;
-  width: 70%;
-  float:left;
+  margin-left: 10%;
+  width: 55%;
 }
 
 li:hover {
@@ -22,9 +21,9 @@ li:after {
 
 button  {
   float: left;
-  width: 20%;
+  width: 15%;
   height: 80px;
-  margin-left: 2px;
+  margin-left: 3px;
 }
 
 li {
@@ -35,7 +34,7 @@ li {
   border-radius: 4px;
   margin-bottom: 2px;
   float: left;
-  width: 70%;
+  width: 100%;
   height: 80px
 
 }

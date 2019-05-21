@@ -67,9 +67,9 @@ export function gameReducer(state = initialState, action: GameActions) {
     case GameActionTypes.LOAD_ACTIVE_FLASHCARD_GROUP_SUCCESS: {
       return {
         ...state,
-        activeFlashcardGroup: action.activeFlashcardGroup,
-        questionsLeft: action.activeFlashcardGroup.length,
-        activeGroupName: action.activeGroupName
+        activeFlashcardGroup: action.group.flashcards,
+        questionsLeft: action.group.size,
+        activeGroupName: action.group.name
       }
     }
 

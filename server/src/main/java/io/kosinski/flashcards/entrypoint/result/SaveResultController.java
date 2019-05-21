@@ -17,7 +17,6 @@ public class SaveResultController {
 
     @PostMapping
     public int saveResult(@RequestBody Result result) {
-        System.out.println(result.toString());
         return saveResult.save(result);
     }
 }

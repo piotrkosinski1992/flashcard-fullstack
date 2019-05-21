@@ -1,40 +1,52 @@
 package io.kosinski.flashcards.entrypoint.dto;
 
 import io.kosinski.flashcards.domain.Flashcard;
+import io.kosinski.flashcards.domain.FlashcardGroup;
+import io.kosinski.flashcards.domain.Result;
 
 import java.util.Collection;
 
 public class FlashCardGroupDTO {
 
-    private String groupName;
-    private int groupSize;
+    private String name;
+    private int size;
     private Collection<Flashcard> flashcards;
+    private Collection<Result> results;
 
     private FlashCardGroupDTO() {
     }
 
-    public static FlashCardGroupDTO create(String groupName, int groupSize, Collection<Flashcard> flashcards) {
+    public static FlashCardGroupDTO create(FlashcardGroup group) {
         FlashCardGroupDTO dto = new FlashCardGroupDTO();
-        dto.setGroupName(groupName);
-        dto.setGroupSize(groupSize);
-        dto.setFlashcards(flashcards);
+        dto.setResults(group.getResults());
+        dto.setName(group.getName());
+        dto.setSize(group.getSize());
+        dto.setFlashcards(group.getFlashcards());
         return dto;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public Collection<Result> getResults() {
+        return results;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setResults(Collection<Result> results) {
+        this.results = results;
     }
 
-    public int getGroupSize() {
-        return groupSize;
+    public String getName() {
+        return name;
     }
 
-    public void setGroupSize(int groupSize) {
-        this.groupSize = groupSize;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public Collection<Flashcard> getFlashcards() {

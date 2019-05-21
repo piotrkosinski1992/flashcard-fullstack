@@ -1,23 +1,29 @@
 package io.kosinski.flashcards.usecase.impl.result;
 
+import io.kosinski.flashcards.domain.FlashcardGroup;
 import io.kosinski.flashcards.domain.Result;
+import io.kosinski.flashcards.gateway.FlashcardGroupRepo;
 import io.kosinski.flashcards.gateway.ResultRepo;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SaveResult {
 
-    private final ResultRepo resultRepo;
+    private final FlashcardGroupRepo flashcardGroupRepo;
 
-    public SaveResult(ResultRepo resultRepo) {
-        this.resultRepo = resultRepo;
+    public SaveResult(FlashcardGroupRepo flashcardGroupRepo) {
+        this.flashcardGroupRepo = flashcardGroupRepo;
     }
 
     public int save(Result result) {
         int score = calculateResult(result.getCorrectAnswers(), result.getIncorrectAnswers());
 
         result.setFinalScore(score);
-        resultRepo.save(result);
+        FlashcardGroup group = flashcardGroupRepo.findByName(result.getGroupName());
+
+        result.setFlashcardGroup(group);
+        group.setResult(result);
+        flashcardGroupRepo.save(group);
 
         return score;
     }

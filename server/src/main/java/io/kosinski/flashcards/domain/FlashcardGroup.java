@@ -1,8 +1,9 @@
 package io.kosinski.flashcards.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -10,43 +11,40 @@ import java.util.Collection;
 public class FlashcardGroup {
 
     @Id
-    private String groupName;
+    private String name;
 
-    private int groupSize;
+    private int size;
 
-    // https://stackoverflow.com/questions/36042842/spring-jpa-mysql-could-not-write-content-infinite-recursion-stackoverflowerro
-    //czemu nie jsonIngore wewnątrz flashcard??
-    @JsonIgnore
     @OneToMany(mappedBy = "flashcardGroup", cascade = CascadeType.ALL)
     private Collection<Flashcard> flashcards = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Collection<Result> results;
+    @OneToMany(mappedBy = "flashcardGroup", cascade = CascadeType.ALL)
+    private Collection<Result> results = new ArrayList<>();
 
     private FlashcardGroup() {
     }
 
-    public FlashcardGroup(Collection<Flashcard> flashcards, String groupName) {
+    public FlashcardGroup(Collection<Flashcard> flashcards, String name) {
         flashcards.forEach(flashcard -> flashcard.setFlashcardGroup(this));
         this.flashcards.addAll(flashcards);
-        groupSize = flashcards.size();
-        this.groupName = groupName;
+        size = flashcards.size();
+        this.name = name;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getName() {
+        return name;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getGroupSize() {
-        return groupSize;
+    public int getSize() {
+        return size;
     }
 
-    public void setGroupSize(int groupSize) {
-        this.groupSize = groupSize;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public Collection<Flashcard> getFlashcards() {
@@ -63,5 +61,9 @@ public class FlashcardGroup {
 
     public void setResults(Collection<Result> results) {
         this.results = results;
+    }
+
+    public void setResult(Result result) {
+        results.add(result);
     }
 }

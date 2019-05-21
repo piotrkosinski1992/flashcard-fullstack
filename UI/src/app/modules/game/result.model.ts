@@ -1,8 +1,7 @@
 export class Result {
-
-  constructor(private correctAnswers: number,
-              private incorrectAnswers: number,
-              private groupName: string){
+  constructor(public correctAnswers: number,
+              public incorrectAnswers: number,
+              public groupName: string){
   }
 
 }

@@ -6,7 +6,6 @@ import io.kosinski.flashcards.exception.GroupNameAlreadyExists;
 import io.kosinski.flashcards.exception.InvalidFileFormat;
 import io.kosinski.flashcards.exception.InvalidFlashCardData;
 import io.kosinski.flashcards.gateway.FlashcardGroupRepo;
-import io.kosinski.flashcards.gateway.FlashcardRepo;
 import io.kosinski.flashcards.usecase.Upload;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +17,10 @@ import java.util.stream.Collectors;
 @Service
 public class UploadFlashCards implements Upload {
 
-    private final FlashcardRepo flashCardRepo;
     private final FlashcardGroupRepo flashcardGroupRepo;
     private String groupName;
 
-    public UploadFlashCards(FlashcardRepo flashCardRepo, FlashcardGroupRepo flashcardGroupRepo) {
-        this.flashCardRepo = flashCardRepo;
+    public UploadFlashCards(FlashcardGroupRepo flashcardGroupRepo) {
         this.flashcardGroupRepo = flashcardGroupRepo;
     }
 
@@ -36,11 +33,11 @@ public class UploadFlashCards implements Upload {
 
         String[] flashCardsArray = splitDataBySeparator(data);
         List<Flashcard> flashCardsList = mapArrayToListOfObjects(flashCardsArray);
-        flashCardRepo.saveAll(flashCardsList);
+        flashcardGroupRepo.save(new FlashcardGroup(flashCardsList, groupName));
     }
 
     private boolean isGroupNameAlreadyExist(String groupName) {
-        return flashCardRepo.existsByFlashcardGroupGroupName(groupName);
+        return flashcardGroupRepo.existsByName(groupName);
     }
 
     private String prepareGroupName(String fileName) {
@@ -56,12 +53,7 @@ public class UploadFlashCards implements Upload {
         if (isGroupNameAlreadyExist(groupName)) {
             throw new GroupNameAlreadyExists(String.format("GroupName %s already exists", groupName));
         }
-
         flashcardGroupRepo.save(new FlashcardGroup(flashcards, groupName));
-        //flashcards.forEach(flashcard -> flashcard.setGroupName(groupName));
-
-
-        //flashCardRepo.saveAll(flashcards);
     }
 
     private String[] splitDataBySeparator(String flashCards) {
@@ -79,7 +71,6 @@ public class UploadFlashCards implements Upload {
 
         validateFlashCardData(flashCard);
 
-        // TODO FLASHCARDY ZAPISAC W GRUPIE
         return Flashcard.of(flashCard[0].trim(), flashCard[1].trim());
     }
 

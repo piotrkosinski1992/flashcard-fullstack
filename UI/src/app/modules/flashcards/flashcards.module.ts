@@ -9,9 +9,10 @@ import {FlashcardGroupComponent} from './flashcard-group/flashcard-group.compone
 import {FlashcardGroupItemComponent} from './flashcard-group/flashcard-group-item/flashcard-group-item.component';
 import {FlashcardGroupCreateComponent} from './flashcard-group/flashcard-group-create/flashcard-group-create.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { FlashcardGroupHighscoresComponent } from './flashcard-group/flashcard-group-highscores/flashcard-group-highscores.component';
 
 @NgModule({
-  declarations: [FlashcardsComponent, FlashcardsListComponent, FlashcardEditComponent, FlashcardsUploadComponent, FlashcardGroupComponent, FlashcardGroupItemComponent, FlashcardGroupCreateComponent],
+  declarations: [FlashcardsComponent, FlashcardsListComponent, FlashcardEditComponent, FlashcardsUploadComponent, FlashcardGroupComponent, FlashcardGroupItemComponent, FlashcardGroupCreateComponent, FlashcardGroupHighscoresComponent],
   imports: [
     CommonModule,
     FlashcardsRoutingModule,

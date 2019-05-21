@@ -2,10 +2,11 @@
   <h4>Questions left: {{gameState.questionsLeft }}</h4>
 </div>
 
-
-<div *ngIf="gameState.questionsLeft == 0">
-  <button (click)="calculateScore()">Calculate score</button>
-  <h3> {{gameState.finalScore}} %</h3>
+<div class="score" *ngIf="gameState.questionsLeft == 0">
+  <button *ngIf="!showScore" (click)="calculateScore()">Calculate score</button>
+  <div *ngIf="showScore">
+    <h2> {{gameState.finalScore}} %</h2>
+    <button [routerLink]="['/']">Exit</button>
+  </div>
 </div>
-
 <router-outlet></router-outlet>

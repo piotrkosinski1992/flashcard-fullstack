@@ -1,5 +1,7 @@
 package io.kosinski.flashcards.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public final class Flashcard {
     private String heads;
     private String tails;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "FLASHCARD_GROUP_NAME")
     private FlashcardGroup flashcardGroup;

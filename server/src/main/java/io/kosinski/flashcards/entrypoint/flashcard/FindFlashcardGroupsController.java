@@ -1,6 +1,6 @@
 package io.kosinski.flashcards.entrypoint.flashcard;
 
-import io.kosinski.flashcards.domain.Flashcard;
+import io.kosinski.flashcards.domain.FlashcardGroup;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
 import io.kosinski.flashcards.usecase.impl.flashcard.FindFlashcardGroups;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +26,7 @@ public class FindFlashcardGroupsController {
     }
 
     @GetMapping("/{groupName}")
-    public Collection<Flashcard> findByGroupName(@PathVariable String groupName) {
+    public FlashCardGroupDTO findByGroupName(@PathVariable String groupName) {
         return findFlashCardGroups.byGroupName(groupName);
     }
 }

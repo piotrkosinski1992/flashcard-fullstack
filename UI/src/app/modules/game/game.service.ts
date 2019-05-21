@@ -7,6 +7,7 @@ import {Store} from "@ngrx/store";
 import * as gameActions from "../game/store/game.actions"
 import {Router} from "@angular/router";
 import {Result} from "./result.model";
+import {FlashcardGroup} from "../flashcards/flashcard-group/flashcard-group.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class GameService {
   constructor(private http: HttpClient, private store: Store<GameState>, private router: Router) {
   }
 
-  getActiveFlashcardGroup(groupName: string): Observable<Flashcard[]> {
-    return this.http.get<Flashcard[]>('/api/flashcards/group/' + groupName);
+  getActiveFlashcardGroup(groupName: string): Observable<FlashcardGroup> {
+    return this.http.get<FlashcardGroup>('/api/flashcards/group/' + groupName);
   }
 
   pickRandomFlashcard() {

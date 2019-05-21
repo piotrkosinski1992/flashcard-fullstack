@@ -5,6 +5,7 @@ import { FlashcardsUploadComponent } from './flashcards-upload/flashcards-upload
 import { FlashcardGroupCreateComponent } from './flashcard-group/flashcard-group-create/flashcard-group-create.component';
 import { FlashcardGroupComponent } from './flashcard-group/flashcard-group.component';
 import {FlashcardsListComponent} from "./flashcards-list/flashcards-list.component";
+import {FlashcardGroupHighscoresComponent} from "./flashcard-group/flashcard-group-highscores/flashcard-group-highscores.component";
 
 const flashCardRoutes: Routes = [
   {
@@ -13,6 +14,7 @@ const flashCardRoutes: Routes = [
       {path: 'create', component: FlashcardGroupCreateComponent},
       {path: 'all', component: FlashcardGroupComponent},
       {path: ':groupName', component: FlashcardsListComponent},
+      {path: 'highscores/:groupName', component: FlashcardGroupHighscoresComponent},
 
       /*       {path: ':id/edit', component: RecipeEditComponent},*/
     ]

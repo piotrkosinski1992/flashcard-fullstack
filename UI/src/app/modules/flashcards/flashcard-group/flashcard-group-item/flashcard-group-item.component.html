@@ -3,12 +3,12 @@
       (click)="onGroupSelected(flashcardGroup.name)">
     {{flashcardGroup.name}}
     <span class="badge badge-primary badge-pill">
-      {{flashcardGroup.amount}}
+      {{flashcardGroup.size}}
     </span>
   </li>
-  <button id="delete" class="btn-danger" (click)="onDeleteFlashcardGroup(flashcardGroup.name)">delete</button>
 </div>
+<button id="highscores" class="btn-success" [routerLink]="['/flashcards/highscores/' + flashcardGroup.name]">highscores
+</button>
+<button id="delete" class="btn-danger" (click)="onDeleteFlashcardGroupClicked(flashcardGroup.name)">delete</button>
 <br/>
 <br/>
-
-

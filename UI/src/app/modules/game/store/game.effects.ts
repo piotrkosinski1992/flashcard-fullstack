@@ -8,12 +8,11 @@ import {Router} from "@angular/router";
 import {GameActionTypes, LoadActiveFlashcardGroup, SaveGameResult} from "./game.actions";
 import {GameService} from "../game.service";
 import {Result} from "../result.model";
+import {FlashcardGroup} from "../../flashcards/flashcard-group/flashcard-group.model";
 
 
 @Injectable()
 export class GameEffects {
-
-  groupName: string;
 
   constructor(private actions$: Actions, private router: Router, private gameService: GameService) {
   }
@@ -23,8 +22,8 @@ export class GameEffects {
     .pipe(ofType(GameActionTypes.LOAD_ACTIVE_FLASHCARD_GROUP),
       mergeMap((result: LoadActiveFlashcardGroup ) =>
         this.gameService.getActiveFlashcardGroup(result.groupName).pipe(
-          map(group => {
-            return new gameActions.LoadActiveFlashcardGroupSuccess(group, group[0].groupName)
+          map((group: FlashcardGroup) => {
+            return new gameActions.LoadActiveFlashcardGroupSuccess(group)
           })
         )));
 

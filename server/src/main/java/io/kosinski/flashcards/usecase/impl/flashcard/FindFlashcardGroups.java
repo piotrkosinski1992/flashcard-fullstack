@@ -1,6 +1,5 @@
 package io.kosinski.flashcards.usecase.impl.flashcard;
 
-import io.kosinski.flashcards.domain.Flashcard;
 import io.kosinski.flashcards.entrypoint.dto.FlashCardGroupDTO;
 import io.kosinski.flashcards.gateway.FlashcardGroupRepo;
 import org.springframework.stereotype.Service;
@@ -18,13 +17,13 @@ public class FindFlashcardGroups {
     }
 
     public Collection<FlashCardGroupDTO> all() {
-        return flashcardGroupRepo.findAllByOrderByGroupName()
+        return flashcardGroupRepo.findAllByOrderByName()
                 .stream()
-                .map(group -> FlashCardGroupDTO.create(group.getGroupName(), group.getGroupSize(), group.getFlashcards()))
+                .map(FlashCardGroupDTO::create)
                 .collect(Collectors.toList());
     }
 
-    public Collection<Flashcard> byGroupName(String groupName) {
-        return flashcardGroupRepo.findByGroupName(groupName);
+    public FlashCardGroupDTO byGroupName(String groupName) {
+        return FlashCardGroupDTO.create(flashcardGroupRepo.findByName(groupName));
     }
 }

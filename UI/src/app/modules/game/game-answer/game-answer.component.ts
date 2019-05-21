@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GameState} from "../store/game.reducers";
 import {Store} from "@ngrx/store";
 import {AlertService} from "../../shared/alert/alert.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-game-answer',
@@ -23,7 +24,4 @@ export class GameAnswerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.alertService.clearAlerts();
   }
-
-
-
 }

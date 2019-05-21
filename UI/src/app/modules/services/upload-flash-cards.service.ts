@@ -17,6 +17,6 @@ export class UploadFlashCardsService {
 
   uploadFlashcardGroup(flashcardGroup: FlashcardGroup) {
     return this.http.post('/api/upload/array/'
-      + flashcardGroup.flashcardGroupName, flashcardGroup.flashcards)
+      + flashcardGroup.name, flashcardGroup.flashcards)
   }
 }
