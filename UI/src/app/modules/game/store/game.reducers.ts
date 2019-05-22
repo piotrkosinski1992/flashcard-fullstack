@@ -23,6 +23,15 @@ const initialState: GameState = {
 
 export function gameReducer(state = initialState, action: GameActions) {
   switch(action.type) {
+    case GameActionTypes.DELETE_FLASHCARD_LOCAL: {
+      var modifiedFlashcards: Flashcard[] = state.activeFlashcardGroup
+        .filter((x: Flashcard) => ((x.heads !== action.flashcard.heads) ||
+          (x.tails !== action.flashcard.tails)));
+      return {
+        ...state,
+        activeFlashcardGroup: modifiedFlashcards
+      }
+    }
 
     case GameActionTypes.SAVE_GAME_RESULT_SUCCESS: {
       return {

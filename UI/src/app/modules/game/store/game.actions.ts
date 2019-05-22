@@ -1,6 +1,8 @@
 import {Action} from "@ngrx/store";
 import {Flashcard} from "../../flashcards/flashcard.model";
-import {LoadFlashcardGroups} from "../../flashcards/flashcard-group/store/flashcard-group.actions";
+import {
+  LoadFlashcardGroups
+} from "../../flashcards/flashcard-group/store/flashcard-group.actions";
 import {Result} from "../result.model";
 import {FlashcardGroup} from "../../flashcards/flashcard-group/flashcard-group.model";
 
@@ -17,8 +19,16 @@ export enum GameActionTypes {
   INCREMENT_INCORRECT_ANSWERS = '[game] increment INCORRECT answers',
 
   SAVE_GAME_RESULT = '[game] save game result',
-  SAVE_GAME_RESULT_SUCCESS = '[game] save game result SUCCESS'
+  SAVE_GAME_RESULT_SUCCESS = '[game] save game result SUCCESS',
 
+  DELETE_FLASHCARD_LOCAL = '[flashcard] delete flashcard locally'
+}
+
+export class DeleteFlashcardLocal implements Action {
+  readonly type = GameActionTypes.DELETE_FLASHCARD_LOCAL;
+
+  constructor(public flashcard: Flashcard) {
+  }
 }
 
 export class SaveGameResult implements Action {
@@ -86,5 +96,6 @@ export type GameActions =
   IncrementCorrectAnswers |
   IncrementIncorrectAnswers |
   SaveGameResult |
-  SaveGameResultSuccess
+  SaveGameResultSuccess |
+  DeleteFlashcardLocal
 

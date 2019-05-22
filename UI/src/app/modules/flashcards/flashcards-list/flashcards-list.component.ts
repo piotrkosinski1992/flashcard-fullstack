@@ -5,6 +5,8 @@ import * as gameActions from "../../game/store/game.actions"
 import {Observable} from "rxjs";
 import {GameState} from "../../game/store/game.reducers";
 import {GameService} from "../../game/game.service";
+import {Flashcard} from "../flashcard.model";
+import {AppState} from "../../store/app.reducers";
 
 @Component({
   selector: 'app-flashcards-list',
@@ -16,13 +18,13 @@ export class FlashcardsListComponent implements OnInit {
   //flashcards: Flashcard[];
   gameState: Observable<GameState>;
 
-  constructor(private store: Store<GameState>, private router: Router,
+  constructor(private store: Store<AppState>, private router: Router,
               private route: ActivatedRoute,
               private gameService: GameService) { }
 
   ngOnInit() {
     this.gameState = this.store.select('game')
-    //this.store.select('flashcardGroups').subscribe(result => this.flashcards = result.activeFlashcardGroup)
+    //this.store.select('game').subscribe(result => this.group = result.activeGroupName)
   }
 
   onBackClicked() {
@@ -35,7 +37,7 @@ export class FlashcardsListComponent implements OnInit {
     this.router.navigate(['/game/question'])
   }
 
-  onDeleteFlashcard() {
-
+  onDeleteFlashcard(flashcard: Flashcard) {
+    this.store.dispatch(new gameActions.DeleteFlashcardLocal(flashcard));
   }
 }

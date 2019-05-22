@@ -6,9 +6,9 @@ export enum FlashcardGroupActionTypes {
   LOAD_FLASHCARD_GROUP_SUCCESS = '[flashcardGroup] load flashcard groups SUCCESS',
   LOAD_FLASHCARD_GROUP_FAILED = '[flashcardGroup] load flashcard groups FAILED',
   DELETE_FLASHCARD_GROUP = '[flashcardGroup] delete flashcard groups',
-  //TODO
-  UPDATE_FLASHCARD_GROUPS = '[flashcardGroup] update flashcard groups',
 
+  UPDATE_FLASHCARD_GROUP = '[flashcardGroup] update flashcard group',
+  UPDATE_FLASHCARD_GROUP_SUCCESS = '[flashcardGroup] update flashcard groups succeed',
 
 }
 

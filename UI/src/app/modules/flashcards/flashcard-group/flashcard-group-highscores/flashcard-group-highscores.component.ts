@@ -23,8 +23,6 @@ export class FlashcardGroupHighscoresComponent implements OnInit, OnDestroy {
     this.flashcardGroup =  this.flashcardGroups
       .filter((group: FlashcardGroup) =>
         group.name == this.activeRoute.snapshot.paramMap.get('groupName'))[0];
-
-    console.log(this.activeRoute.snapshot.paramMap.get('groupName'))
   }
 
   ngOnDestroy(): void {
